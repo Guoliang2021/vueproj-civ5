@@ -3,6 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
+  <img class="civ5logo" alt="Civ5 logo" src="./assets/civ5logo.png" />
+  <h1>Welcome to civ5</h1>
   <router-view />
 </template>
 
@@ -26,5 +28,14 @@ nav {
       color: #42b983;
     }
   }
+}
+.civ5logo {
+  width: auto;
+  height: auto;
+  max-width: 80%;
+  max-height: 30%;
+}
+h1 {
+  font-family: "Consolas";
 }
 </style>
