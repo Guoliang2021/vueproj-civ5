@@ -1,10 +1,10 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">主页</router-link> |
+    <router-link to="/calc">计算器</router-link> |
+    <!-- <router-link to="/calc">资料库</router-link> -->
   </nav>
   <img class="civ5logo" alt="Civ5 logo" src="./assets/civ5logo.png" />
-  <h1>Welcome to civ5</h1>
   <router-view />
 </template>
 
@@ -24,7 +24,7 @@ nav {
     font-weight: bold;
     color: #2c3e50;
 
-    &.router-link-exact-active {
+    &.router-link-active {
       color: #42b983;
     }
   }
@@ -34,8 +34,5 @@ nav {
   height: auto;
   max-width: 80%;
   max-height: 30%;
-}
-h1 {
-  font-family: "Consolas";
 }
 </style>
