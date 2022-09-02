@@ -10,6 +10,8 @@
 
 <style lang="scss">
 #app {
+  display: flex;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,5 +36,6 @@ nav {
   height: auto;
   max-width: 80%;
   max-height: 30%;
+  margin: auto;
 }
 </style>
