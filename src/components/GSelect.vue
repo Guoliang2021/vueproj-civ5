@@ -7,7 +7,10 @@
       @blur="onBlur"
       v-model="selectedName"
     />
-    <div :class="['triangle-down', { rotation: rotate }]"></div>
+    <div
+      :class="['triangle-down', { rotation: rotate }]"
+      @click="onClick"
+    ></div>
     <div
       :class="['m-options-panel f16', showOptions ? 'show' : 'hidden']"
       :style="`height: ${selectArray}.length * 40}px;`"
@@ -41,24 +44,24 @@ interface selectedItem {
 export default class GSelect extends Vue {
   rotate = false;
   showOptions = false;
-  selectedName = "xmbo";
+  selectedName = "";
   color!: string;
   selectArray!: [selectedItem];
   getValue(item: selectedItem) {
     this.selectedName = item.name;
     this.showOptions = false;
+    this.$emit("itemSelected", item);
   }
   onClick() {
     this.rotate = !this.rotate;
     this.showOptions = !this.showOptions;
-    if (this.rotate == true) {
-      this.selectedName = "xmjd";
-    } else {
-      this.selectedName = "xmbo";
-    }
   }
   onBlur() {
     this.rotate = false;
+    this.showOptions = false;
+  }
+  created() {
+    this.selectedName = this.selectArray[0].name;
   }
 }
 </script>

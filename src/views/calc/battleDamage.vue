@@ -1,13 +1,20 @@
 <template>
   <div id="bd-row">
-    <GSelect color="white" :selectArray="selectArray"></GSelect>
+    <GSelect
+      color="white"
+      :selectArray="selectArray"
+      @itemSelected="itemSelected"
+    ></GSelect>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import GSelect from "@/components/GSelect.vue";
-
+interface selectedItem {
+  name: string;
+  index: number;
+}
 @Options({
   components: {
     GSelect,
@@ -49,6 +56,11 @@ import GSelect from "@/components/GSelect.vue";
         },
       ],
     };
+  },
+  methods: {
+    itemSelected(item: selectedItem) {
+      console.log(item.name);
+    },
   },
 })
 export default class BattleDamage extends Vue {}
