@@ -1,3 +1,13 @@
+<!--
+ 自定义下拉框选择组件
+ 调用者通过props中定义的optionArray属性动态修改被选择项
+ optionArray的结构形式按照 
+ interface selectedItem{
+  name: string;
+  index: number;
+}传入
+  组件输出信号 selectedOptionChanged,参数为被选择项的selectedItem结构
+-->
 <template>
   <div class="m-select-wrap">
     <input
@@ -5,7 +15,7 @@
       readonly
       @click="onClick"
       @blur="onBlur"
-      v-model="selectedName"
+      v-model="selectedOptionName"
     />
     <div
       :class="['triangle-down', { rotation: rotate }]"
@@ -13,13 +23,13 @@
     ></div>
     <div
       :class="['m-options-panel f16', showOptions ? 'show' : 'hidden']"
-      :style="`height: ${selectArray}.length * 40}px;`"
+      :style="`height: ${optionArray}.length * 40}px;`"
     >
       <p
         class="u-option"
-        @mousedown="getValue(item)"
-        v-for="item in selectArray"
+        v-for="item in optionArray"
         :key="item.index"
+        @mousedown="getValue(item)"
       >
         {{ item.name }}
       </p>
@@ -38,19 +48,21 @@ interface selectedItem {
   props: {
     //需要通过父组件传递的参数得在props里面声明
     color: String,
-    selectArray: Array,
+    optionArray: Array,
   },
 })
 export default class GSelect extends Vue {
   rotate = false;
   showOptions = false;
-  selectedName = "";
+  selectedOptionName = "";
   color!: string;
-  selectArray!: [selectedItem];
+  optionArray!: [selectedItem];
   getValue(item: selectedItem) {
-    this.selectedName = item.name;
     this.showOptions = false;
-    this.$emit("itemSelected", item);
+    if (this.selectedOptionName != item.name) {
+      this.selectedOptionName = item.name;
+      this.$emit("selectedOptionChanged", item);
+    }
   }
   onClick() {
     this.rotate = !this.rotate;
@@ -61,7 +73,8 @@ export default class GSelect extends Vue {
     this.showOptions = false;
   }
   created() {
-    this.selectedName = this.selectArray[0].name;
+    this.selectedOptionName = this.optionArray[0].name;
+    this.$emit("selectedOptionChanged", this.optionArray[0]);
   }
 }
 </script>
