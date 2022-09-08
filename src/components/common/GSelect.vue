@@ -24,7 +24,7 @@
       <p
         class="u-option"
         v-for="item in optionArray"
-        :key="item.index"
+        :key="item.id"
         @mousedown="getValue(item)"
       >
         {{ item.name }}

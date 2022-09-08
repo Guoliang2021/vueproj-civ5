@@ -41,6 +41,14 @@ const unitType = [
   },
 ];
 
+const battleUnitArray = [
+  {
+    id: 0,
+    name: "斥候",
+  },
+];
+
 module.exports = {
   typeArray: unitType,
+  unitArray: battleUnitArray,
 };

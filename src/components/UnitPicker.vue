@@ -14,6 +14,13 @@
       :optionArray="eraArray"
       @selectedOptionChanged="eraChanged"
     ></GSelect>
+    <label>单位</label>
+    <GSelect
+      id="unit"
+      color="white"
+      :optionArray="unitArray"
+      @selectedOptionChanged="unitChanged"
+    ></GSelect>
   </div>
 </template>
 
@@ -30,6 +37,7 @@ import { TypeGSelectItem } from "../types/commonType";
     return {
       eraArray: [],
       typeArray: [],
+      unitArray: [],
     };
   },
   props: {},
@@ -37,17 +45,23 @@ import { TypeGSelectItem } from "../types/commonType";
 export default class UnitPicker extends Vue {
   eraArray!: [];
   typeArray!: [];
+  unitArray!: [];
   eraChanged(item: TypeGSelectItem) {
     console.log(item);
   }
   typeChanged(item: TypeGSelectItem) {
     console.log(item);
   }
+  unitChanged(item: TypeGSelectItem) {
+    console.log(item);
+  }
   created() {
     var era = require("../../staticData/era").eraArray;
-    var unitType = require("../../staticData/unitType").typeArray;
+    var unitType = require("../../staticData/units").typeArray;
+    var unit = require("../../staticData/units").unitArray;
     this.eraArray = era;
     this.typeArray = unitType;
+    this.unitArray = unit;
   }
 }
 </script>

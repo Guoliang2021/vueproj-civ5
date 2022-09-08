@@ -1,34 +1,34 @@
 const era = [
   {
-    index: 0,
+    id: 0,
     name: "全部",
   },
   {
-    index: 1,
+    id: 1,
     name: "远古",
   },
   {
-    index: 2,
+    id: 2,
     name: "古典",
   },
   {
-    index: 3,
+    id: 3,
     name: "中古",
   },
   {
-    index: 4,
+    id: 4,
     name: "启蒙",
   },
   {
-    index: 5,
+    id: 5,
     name: "工业",
   },
   {
-    index: 6,
+    id: 6,
     name: "核子",
   },
   {
-    index: 7,
+    id: 7,
     name: "资讯",
   },
 ];
