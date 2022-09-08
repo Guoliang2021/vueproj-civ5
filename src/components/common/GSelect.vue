@@ -1,12 +1,8 @@
 <!--
  自定义下拉框选择组件
  调用者通过props中定义的optionArray属性动态修改被选择项
- optionArray的结构形式按照 
- interface selectedItem{
-  name: string;
-  index: number;
-}传入
-  组件输出信号 selectedOptionChanged,参数为被选择项的selectedItem结构
+ optionArray的结构形式按照 /src/types/common.ts-TypeGSelectItem定义
+  组件输出信号 selectedOptionChanged,参数为被选择项的TypeGSelectItem结构
 -->
 <template>
   <div class="m-select-wrap">
@@ -39,11 +35,7 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-
-interface selectedItem {
-  name: string;
-  index: number;
-}
+import { TypeGSelectItem } from "../../types/commonType";
 @Options({
   props: {
     //需要通过父组件传递的参数得在props里面声明
@@ -56,8 +48,8 @@ export default class GSelect extends Vue {
   showOptions = false;
   selectedOptionName = "";
   color!: string;
-  optionArray!: [selectedItem];
-  getValue(item: selectedItem) {
+  optionArray!: [TypeGSelectItem];
+  getValue(item: TypeGSelectItem) {
     this.showOptions = false;
     if (this.selectedOptionName != item.name) {
       this.selectedOptionName = item.name;
