@@ -5,31 +5,33 @@
   组件输出信号 selectedOptionChanged,参数为被选择项的TypeGSelectItem结构
 -->
 <template>
-  <div class="g_select_title">{{ title }}</div>
-  <div class="g_select_wrap">
-    <input
-      :class="['g_select_input f16', color === 'blue' ? '' : 'white_color']"
-      readonly
-      @click="onClick"
-      @blur="onBlur"
-      v-model="selectedOptionName"
-    />
-    <div
-      :class="['triangle_down', { rotation: rotate }]"
-      @click="onClick"
-    ></div>
-    <div
-      :class="['g_options_panel f16', showOptions ? 'show' : 'hidden']"
-      :style="`height: ${optionArray}.length * 40}px;`"
-    >
-      <p
-        class="g_option"
-        v-for="item in optionArray"
-        :key="item.id"
-        @mousedown="getValue(item)"
+  <div id="g_select_shell">
+    <div class="g_select_title">{{ title }}</div>
+    <div class="g_select_wrap">
+      <input
+        :class="['g_select_input f16', color === 'blue' ? '' : 'white_color']"
+        readonly
+        @click="onClick"
+        @blur="onBlur"
+        v-model="selectedOptionName"
+      />
+      <div
+        :class="['triangle_down', { rotation: rotate }]"
+        @click="onClick"
+      ></div>
+      <div
+        :class="['g_options_panel f16', showOptions ? 'show' : 'hidden']"
+        :style="`height: ${optionArray}.length * 40}px;`"
       >
-        {{ item.name }}
-      </p>
+        <p
+          class="g_option"
+          v-for="item in optionArray"
+          :key="item.id"
+          @mousedown="getValue(item)"
+        >
+          {{ item.name }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -79,12 +81,15 @@ export default class GSelect extends Vue {
   color: #3a79ee;
   float: left;
   margin: 10px;
+  position: relative;
+  line-height: 40px;
 }
 .g_select_wrap {
   width: 135px;
   height: 40px;
   line-height: 40px;
   position: relative;
+  margin: 10px;
   float: left;
   .g_select_input {
     width: 105px;

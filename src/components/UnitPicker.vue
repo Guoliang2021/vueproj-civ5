@@ -1,21 +1,18 @@
 <template>
-  <div id="shell">
+  <div id="unitpicker_shell">
     <GSelect
-      id="unitType"
       color="white"
       title="类型"
       :optionArray="typeArray"
       @selectedOptionChanged="typeChanged"
     ></GSelect>
     <GSelect
-      id="era"
       color="white"
       title="时代"
       :optionArray="eraArray"
       @selectedOptionChanged="eraChanged"
     ></GSelect>
     <GSelect
-      id="unit"
       color="white"
       title="单位"
       :optionArray="unitArray"
