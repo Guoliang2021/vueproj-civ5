@@ -1,23 +1,23 @@
 <template>
   <div id="shell">
-    <label>类型</label>
     <GSelect
       id="unitType"
       color="white"
+      title="类型"
       :optionArray="typeArray"
       @selectedOptionChanged="typeChanged"
     ></GSelect>
-    <label>时代</label>
     <GSelect
       id="era"
       color="white"
+      title="时代"
       :optionArray="eraArray"
       @selectedOptionChanged="eraChanged"
     ></GSelect>
-    <label>单位</label>
     <GSelect
       id="unit"
       color="white"
+      title="单位"
       :optionArray="unitArray"
       @selectedOptionChanged="unitChanged"
     ></GSelect>

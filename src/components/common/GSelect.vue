@@ -5,6 +5,7 @@
   组件输出信号 selectedOptionChanged,参数为被选择项的TypeGSelectItem结构
 -->
 <template>
+  <div class="g_select_title">{{ title }}</div>
   <div class="g_select_wrap">
     <input
       :class="['g_select_input f16', color === 'blue' ? '' : 'white_color']"
@@ -41,6 +42,7 @@ import { TypeGSelectItem } from "../../types/commonType";
     //需要通过父组件传递的参数得在props里面声明
     color: String,
     optionArray: Array,
+    title: String,
   },
 })
 export default class GSelect extends Vue {
@@ -48,6 +50,7 @@ export default class GSelect extends Vue {
   showOptions = false;
   selectedOptionName = "";
   color!: string;
+  title!: string;
   optionArray!: [TypeGSelectItem];
   getValue(item: TypeGSelectItem) {
     this.showOptions = false;
@@ -72,11 +75,17 @@ export default class GSelect extends Vue {
 </script>
 
 <style lang="scss">
+.g_select_title {
+  color: #3a79ee;
+  float: left;
+  margin: 10px;
+}
 .g_select_wrap {
   width: 135px;
   height: 40px;
   line-height: 40px;
   position: relative;
+  float: left;
   .g_select_input {
     width: 105px;
     background: #3a79ee;
