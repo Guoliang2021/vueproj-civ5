@@ -5,24 +5,24 @@
   组件输出信号 selectedOptionChanged,参数为被选择项的TypeGSelectItem结构
 -->
 <template>
-  <div class="m-select-wrap">
+  <div class="g_select_wrap">
     <input
-      :class="['u-select-input f16', color === 'blue' ? '' : 'white-color']"
+      :class="['g_select_input f16', color === 'blue' ? '' : 'white_color']"
       readonly
       @click="onClick"
       @blur="onBlur"
       v-model="selectedOptionName"
     />
     <div
-      :class="['triangle-down', { rotation: rotate }]"
+      :class="['triangle_down', { rotation: rotate }]"
       @click="onClick"
     ></div>
     <div
-      :class="['m-options-panel f16', showOptions ? 'show' : 'hidden']"
+      :class="['g_options_panel f16', showOptions ? 'show' : 'hidden']"
       :style="`height: ${optionArray}.length * 40}px;`"
     >
       <p
-        class="u-option"
+        class="g_option"
         v-for="item in optionArray"
         :key="item.id"
         @mousedown="getValue(item)"
@@ -72,12 +72,12 @@ export default class GSelect extends Vue {
 </script>
 
 <style lang="scss">
-.m-select-wrap {
+.g_select_wrap {
   width: 135px;
   height: 40px;
   line-height: 40px;
   position: relative;
-  .u-select-input {
+  .g_select_input {
     width: 105px;
     background: #3a79ee;
     color: #ffffff;
@@ -88,12 +88,14 @@ export default class GSelect extends Vue {
     padding: 0 15px;
     cursor: pointer;
     border: none;
+    z-index: 1;
   }
-  .white-color {
+  .white_color {
     background: #ffffff;
     color: #3a79ee;
+    z-index: 1;
   }
-  .triangle-down {
+  .triangle_down {
     // 下三角样式
     width: 0;
     height: 0;
@@ -104,12 +106,14 @@ export default class GSelect extends Vue {
     top: 18px;
     right: 15px;
     transition: transform 0.1s ease-in-out;
+    z-index: 1;
   }
   .rotation {
     transform: rotate(180deg);
   }
-  .m-options-panel {
+  .g_options_panel {
     position: absolute;
+    z-index: 2;
     background: #ffffff;
     border-radius: 8px;
     width: 133px;
@@ -117,11 +121,11 @@ export default class GSelect extends Vue {
     top: 46px;
     left: 0;
     color: #706f94;
-    .u-option {
+    .g_option {
       padding: 0 15px;
       cursor: pointer;
     }
-    .u-option:hover {
+    .g_option:hover {
       color: #3a79ee;
       background: #eef1fa;
     }
