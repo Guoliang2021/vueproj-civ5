@@ -1,6 +1,6 @@
 <template>
   <div id="bd-row">
-    <UnitPicker></UnitPicker>
+    <UnitPicker selectDirection="row"></UnitPicker>
   </div>
 </template>
 

@@ -1,18 +1,34 @@
+<!--
+ 单位选择组件
+ 调用者通过props中定义的direction属性(row|column)调整下拉框的排列方式
+-->
 <template>
   <div id="unitpicker_shell">
     <GSelect
+      :class="[
+        'g_select_column',
+        selectDirection === 'row' ? 'g_select_row' : '',
+      ]"
       color="white"
       title="类型"
       :optionArray="typeArray"
       @selectedOptionChanged="typeChanged"
     ></GSelect>
     <GSelect
+      :class="[
+        'g_select_column',
+        selectDirection === 'row' ? 'g_select_row' : '',
+      ]"
       color="white"
       title="时代"
       :optionArray="eraArray"
       @selectedOptionChanged="eraChanged"
     ></GSelect>
     <GSelect
+      :class="[
+        'g_select_column',
+        selectDirection === 'row' ? 'g_select_row' : '',
+      ]"
       color="white"
       title="单位"
       :optionArray="unitArray"
@@ -37,12 +53,15 @@ import { TypeGSelectItem } from "../types/commonType";
       unitArray: [],
     };
   },
-  props: {},
+  props: {
+    selectDirection: String,
+  },
 })
 export default class UnitPicker extends Vue {
   eraArray!: [];
   typeArray!: [];
   unitArray!: [];
+  selectDirection!: string;
   eraChanged(item: TypeGSelectItem) {
     console.log(item);
   }
@@ -62,3 +81,13 @@ export default class UnitPicker extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.g_select_row {
+  position: relative;
+  float: left;
+}
+.g_select_column {
+  position: relative;
+}
+</style>
