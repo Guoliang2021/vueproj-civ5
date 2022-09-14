@@ -41,6 +41,12 @@
 import { Options, Vue } from "vue-class-component";
 import GSelect from "./common/GSelect.vue";
 import { TypeGSelectItem } from "../types/commonType";
+import { eEra, eraEnum2String } from "../../staticData/era";
+import {
+  eUnitType,
+  unitTypeEnum2String,
+  battleUnitArray,
+} from "../../staticData/units";
 
 @Options({
   components: {
@@ -58,9 +64,9 @@ import { TypeGSelectItem } from "../types/commonType";
   },
 })
 export default class UnitPicker extends Vue {
-  eraArray!: [];
-  typeArray!: [];
-  unitArray!: [];
+  eraArray!: TypeGSelectItem[];
+  typeArray!: TypeGSelectItem[];
+  unitArray!: TypeGSelectItem[];
   selectDirection!: string;
   eraChanged(item: TypeGSelectItem) {
     console.log(item);
@@ -72,12 +78,25 @@ export default class UnitPicker extends Vue {
     console.log(item);
   }
   created() {
-    var era = require("../../staticData/era").eraArray;
-    var unitType = require("../../staticData/units").typeArray;
-    var unit = require("../../staticData/units").unitArray;
+    const era = [];
+    for (let i = eEra.ERA_ALL; i < eEra.ERA_MAX; i++) {
+      let item: TypeGSelectItem = {
+        id: i,
+        name: eraEnum2String(i),
+      };
+      era.push(item);
+    }
+    const unityType = [];
+    for (let i = eUnitType.UNITTYPE_ALL; i < eUnitType.UNITYPE_MAX; i++) {
+      let item: TypeGSelectItem = {
+        id: i,
+        name: unitTypeEnum2String(i),
+      };
+      unityType.push(item);
+    }
     this.eraArray = era;
-    this.typeArray = unitType;
-    this.unitArray = unit;
+    this.typeArray = unityType;
+    this.unitArray = battleUnitArray;
   }
 }
 </script>
