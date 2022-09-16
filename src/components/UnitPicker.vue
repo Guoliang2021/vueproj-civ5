@@ -87,7 +87,7 @@ export default class UnitPicker extends Vue {
       era.push(item);
     }
     const unityType = [];
-    for (let i = eUnitType.UNITTYPE_ALL; i < eUnitType.UNITYPE_MAX; i++) {
+    for (let i = eUnitType.UNIT_TYPE_ALL; i < eUnitType.UNIT_TYPE_MAX; i++) {
       let item: TypeGSelectItem = {
         id: i,
         name: unitTypeEnum2String(i),
