@@ -54,6 +54,8 @@ import {
   },
   data() {
     return {
+      currentEra: 0,
+      currentType: 0,
       eraArray: [],
       typeArray: [],
       unitArray: [],
@@ -68,14 +70,29 @@ export default class UnitPicker extends Vue {
   typeArray!: TypeGSelectItem[];
   unitArray!: TypeGSelectItem[];
   selectDirection!: string;
+  currentEra = 0;
+  currentType = 0;
   eraChanged(item: TypeGSelectItem) {
-    console.log(item);
+    this.currentEra = item.id;
+    this.unitArray = this.unitFilter(this.currentEra, this.currentType);
   }
   typeChanged(item: TypeGSelectItem) {
-    console.log(item);
+    this.currentType = item.id;
+    this.unitArray = this.unitFilter(this.currentEra, this.currentType);
   }
   unitChanged(item: TypeGSelectItem) {
     console.log(item);
+  }
+  unitFilter(era: number, type: number) {
+    let tempUnitArray: TypeGSelectItem[];
+    tempUnitArray = battleUnitArray;
+    if (era != 0) {
+      tempUnitArray = battleUnitArray.filter((x) => x.era == era);
+    }
+    if (type != 0) {
+      tempUnitArray = tempUnitArray.filter((x) => x.type == type);
+    }
+    return tempUnitArray;
   }
   created() {
     const era = [];
