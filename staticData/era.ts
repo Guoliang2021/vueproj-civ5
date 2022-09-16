@@ -4,9 +4,11 @@ export enum eEra {
   ERA_CLASSICAL,
   ERA_MEDIEVAL,
   ERA_RENAISSANCE,
-  ERA_INDUSTRY,
-  ERA_NUCLEON,
+  ERA_INDUSTRIAL,
+  ERA_MODERN,
+  ERA_ATOMIC,
   ERA_INFOMATION,
+  ERA_FUTURE,
   ERA_MAX,
 }
 
@@ -28,14 +30,20 @@ export function eraEnum2String(era: number) {
     case eEra.ERA_RENAISSANCE:
       retVal = "启蒙";
       break;
-    case eEra.ERA_INDUSTRY:
+    case eEra.ERA_INDUSTRIAL:
       retVal = "工业";
       break;
-    case eEra.ERA_NUCLEON:
-      retVal = "核子";
+    case eEra.ERA_MODERN:
+      retVal = "现代";
+      break;
+    case eEra.ERA_ATOMIC:
+      retVal = "原子";
       break;
     case eEra.ERA_INFOMATION:
       retVal = "资讯";
+      break;
+    case eEra.ERA_FUTURE:
+      retVal = "未来";
       break;
     default:
       retVal = "未定义";
