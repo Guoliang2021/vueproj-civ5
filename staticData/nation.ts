@@ -2,7 +2,7 @@ export enum eNationality {
   NATION_NONE,
   NATION_BARBARIAN,
   NATION_AMERICA,
-  NATION_ARAB,
+  NATION_ARABIA,
   NATION_ASSYRIA,
   NATION_AUSTRIA,
   NATION_AZTAKA,
@@ -59,7 +59,7 @@ export function nationEnum2String(nation: number) {
     case eNationality.NATION_AMERICA:
       retVal = "美国";
       break;
-    case eNationality.NATION_ARAB:
+    case eNationality.NATION_ARABIA:
       retVal = "阿拉伯";
       break;
     case eNationality.NATION_ASSYRIA:
