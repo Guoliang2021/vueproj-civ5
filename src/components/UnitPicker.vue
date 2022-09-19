@@ -81,7 +81,7 @@ export default class UnitPicker extends Vue {
     this.unitArray = this.unitFilter(this.currentEra, this.currentType);
   }
   unitChanged(item: TypeGSelectItem) {
-    console.log(item);
+    this.$emit("unitChanged", item);
   }
   unitFilter(era: number, type: number) {
     let tempUnitArray: TypeGSelectItem[];
