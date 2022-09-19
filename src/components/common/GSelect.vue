@@ -86,26 +86,29 @@ export default class GSelect extends Vue {
 .g_select_title {
   color: #3a79ee;
   float: left;
-  margin: 10px;
+  margin: 5px;
   position: relative;
-  line-height: 40px;
+  line-height: 20px;
+  font-size: 1px;
 }
 .g_select_wrap {
-  width: 135px;
-  height: 40px;
-  line-height: 40px;
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
   position: relative;
-  margin: 10px;
+  margin: 5px;
+  font-size: 1px;
   float: left;
   .g_select_input {
-    width: 105px;
+    width: 50px;
     background: #3a79ee;
     color: #ffffff;
-    box-shadow: 0px 10px 20px 0px rgba(144, 119, 222, 0.2);
-    border-radius: 20px;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 15px;
+    box-shadow: 0px 5px 10px 0px rgba(144, 119, 222, 0.2);
+    border-radius: 10px;
+    font-size: 1px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 7px;
     cursor: pointer;
     border: none;
     z-index: 1;
@@ -119,12 +122,12 @@ export default class GSelect extends Vue {
     // 下三角样式
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #66ccff;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-top: 5px solid #66ccff;
     position: absolute;
-    top: 18px;
-    right: 15px;
+    top: 9px;
+    right: 7px;
     transition: transform 0.1s ease-in-out;
     z-index: 1;
   }
@@ -135,14 +138,15 @@ export default class GSelect extends Vue {
     position: absolute;
     z-index: 2;
     background: #ffffff;
-    border-radius: 8px;
-    width: 133px;
+    border-radius: 4px;
+    width: 65px;
     border: 1px solid #e3e3e3;
-    top: 46px;
+    top: 23px;
     left: 0;
+    font-size: 1px;
     color: #706f94;
     .g_option {
-      padding: 0 15px;
+      padding: 0 7px;
       cursor: pointer;
     }
     .g_option:hover {

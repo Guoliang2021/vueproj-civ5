@@ -1,10 +1,19 @@
 <template>
-  <div id="bd-row">
-    <UnitPicker
-      selectDirection="row"
-      @unitChanged="selectUnitChanged"
-    ></UnitPicker>
-    <img :src="attackUnitIconSrc" />
+  <div class="bd-column">
+    <div class="bd-row">
+      <img class="img_unit_icon" :src="attackModel.iconSrc" />
+      <UnitPicker
+        selectDirection="column"
+        @unitChanged="attackUnitChanged"
+      ></UnitPicker>
+    </div>
+    <div class="bd-row">
+      <img class="img_unit_icon" :src="defenseModel.iconSrc" />
+      <UnitPicker
+        selectDirection="column"
+        @unitChanged="defenseUnitChanged"
+      ></UnitPicker>
+    </div>
   </div>
 </template>
 
@@ -13,10 +22,12 @@ import { Options, Vue } from "vue-class-component";
 import UnitPicker from "@/components/UnitPicker.vue";
 import { TypeGSelectItem } from "../../types/commonType";
 import { battleUnitArray } from "../../../staticData/units";
+import { BattleDamageCalModel } from "../../types/commonType";
 @Options({
   data() {
     return {
-      attackUnitIconSrc: String,
+      attackModel: {},
+      defenseModel: {},
     };
   },
   components: {
@@ -25,18 +36,49 @@ import { battleUnitArray } from "../../../staticData/units";
   methods: {},
 })
 export default class BattleDamage extends Vue {
-  selectUnitChanged(item: TypeGSelectItem) {
-    this.attackUnitIconSrc = require("../../assets/icons/" +
+  fullFillModel(calModel: BattleDamageCalModel, newUnitId: number) {
+    let unit = battleUnitArray[newUnitId];
+    calModel.unitId = unit.id;
+    calModel.unitname = unit.name;
+    calModel.unitType = unit.type;
+    calModel.nationality = unit.nationality;
+    calModel.closeCombat = unit.closeCombat;
+    calModel.TerrainDefense = unit.TerrainDefense;
+    calModel.attackRange = unit.attackRange;
+    calModel.attackValue = unit.attackValue;
+    calModel.rangeAttackValue = unit.rangeAttackValue;
+    // calModel.iconSrc = require("../../assets/icons/" + unit.iconSrc);
+  }
+  attackUnitChanged(item: TypeGSelectItem) {
+    this.fullFillModel(this.attackModel, item.id);
+    this.attackModel.iconSrc = require("../../assets/icons/" +
+      battleUnitArray[item.id].iconSrc);
+    console.log(this.attackModel);
+  }
+  defenseUnitChanged(item: TypeGSelectItem) {
+    this.fullFillModel(this.defenseModel, item.id);
+    this.defenseModel.iconSrc = require("../../assets/icons/" +
       battleUnitArray[item.id].iconSrc);
   }
-  attackUnitIconSrc!: string;
+  attackModel!: BattleDamageCalModel;
+  defenseModel!: BattleDamageCalModel;
 }
 </script>
 
 <style lang="scss">
-#bd-row {
+.bd-row {
   display: flex;
   flex-direction: column;
+  margin: auto;
+}
+.bd-column {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.img_unit_icon {
+  width: 100px;
+  height: 100px;
   margin: auto;
 }
 </style>
