@@ -46,6 +46,12 @@ import { TypeGSelectItem } from "../../types/commonType";
     optionArray: Array,
     title: String,
   },
+  watch: {
+    optionArray(newOption) {
+      this.selectedOptionName = newOption[0].name;
+      this.$emit("selectedOptionChanged", newOption[0]);
+    },
+  },
 })
 export default class GSelect extends Vue {
   rotate = false;

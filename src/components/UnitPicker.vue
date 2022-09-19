@@ -92,6 +92,13 @@ export default class UnitPicker extends Vue {
     if (type != 0) {
       tempUnitArray = tempUnitArray.filter((x) => x.type == type);
     }
+    if (tempUnitArray.length == 0) {
+      let empty: TypeGSelectItem = {
+        id: -1,
+        name: "无匹配项",
+      };
+      tempUnitArray.push(empty);
+    }
     return tempUnitArray;
   }
   created() {
