@@ -47,18 +47,13 @@ export default class BattleDamage extends Vue {
     calModel.attackRange = unit.attackRange;
     calModel.attackValue = unit.attackValue;
     calModel.rangeAttackValue = unit.rangeAttackValue;
-    // calModel.iconSrc = require("../../assets/icons/" + unit.iconSrc);
+    calModel.iconSrc = require("../../assets/icons/" + unit.iconSrc);
   }
   attackUnitChanged(item: TypeGSelectItem) {
     this.fullFillModel(this.attackModel, item.id);
-    this.attackModel.iconSrc = require("../../assets/icons/" +
-      battleUnitArray[item.id].iconSrc);
-    console.log(this.attackModel);
   }
   defenseUnitChanged(item: TypeGSelectItem) {
     this.fullFillModel(this.defenseModel, item.id);
-    this.defenseModel.iconSrc = require("../../assets/icons/" +
-      battleUnitArray[item.id].iconSrc);
   }
   attackModel!: BattleDamageCalModel;
   defenseModel!: BattleDamageCalModel;
