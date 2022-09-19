@@ -14,6 +14,10 @@ export interface BattleDamageCalModel {
   attackRange: number;
   attackValue: number;
   rangeAttackValue: number;
+  modifiedAttackValue: number;
   TerrainDefense: boolean;
+  minDamage: string;
+  maxDamage: string;
+  avgDamage: string;
   iconSrc: string;
 }
