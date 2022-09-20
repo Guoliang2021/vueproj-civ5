@@ -25,7 +25,11 @@
       <div>maxDamage = {{ attackModel.maxDamage }}</div>
       <div>avgDamage = {{ attackModel.avgDamage }}</div>
     </div>
-    <GDialog :showModel="showModel"></GDialog>
+    <GDialog
+      :showDialog="showDialog"
+      @cancel="onCancel"
+      @confirm="onConfirm"
+    ></GDialog>
   </div>
 </template>
 
@@ -41,7 +45,7 @@ import GDialog from "../../components/common/GDialog.vue";
     return {
       attackModel: {},
       defenseModel: {},
-      showModel: Boolean,
+      showDialog: Boolean,
     };
   },
   components: {
@@ -65,7 +69,13 @@ export default class BattleDamage extends Vue {
     calModel.iconSrc = require("../../assets/icons/" + unit.iconSrc);
   }
   onSelectAtkUnit() {
-    this.showModel = !this.showModel;
+    this.showDialog = !this.showDialog;
+  }
+  onCancel() {
+    this.showDialog = false;
+  }
+  onConfirm() {
+    this.showDialog = false;
   }
   attackUnitChanged(item: TypeGSelectItem) {
     this.fullFillModel(this.attackModel, item.id);
@@ -120,7 +130,7 @@ export default class BattleDamage extends Vue {
   }
   attackModel!: BattleDamageCalModel;
   defenseModel!: BattleDamageCalModel;
-  showModel = false;
+  showDialog = false;
 }
 function calcAttackDamage(
   atk: number,

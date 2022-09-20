@@ -1,16 +1,14 @@
 <template>
-  <div class="model" v-show="showModel">
-    <div class="mask">123</div>
-    <div class="model_dialog">
-      <div class="model_header">
+  <div v-show="showDialog">
+    <div class="g_dialog_mask"></div>
+    <div class="g_dialog_shell">
+      <div class="g_dialog_header">
         <span>提示</span>
-        <a href="javascript:;" class="icon_close"></a>
+        <a class="g_dialog_cancel" @click="$emit('cancel')">取消</a>
+        <a class="g_dialog_confirm" @click="$emit('confirm')">确认</a>
       </div>
-      <div class="model_body">
+      <div class="g_dialog_body">
         <div class="body">这条是消息</div>
-      </div>
-      <div class="model_footer">
-        <button class="btn">确认</button>
       </div>
     </div>
   </div>
@@ -20,13 +18,13 @@
 export default {
   name: "GDialog",
   props: {
-    showModel: Boolean,
+    showDialog: Boolean,
   },
 };
 </script>
 
 <style lang="scss">
-.mask {
+.g_dialog_mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -36,20 +34,19 @@ export default {
   opacity: 0.5;
   z-index: 9;
 }
-.model_dialog {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.g_dialog_shell {
+  position: fixed;
+  left: 0;
+  bottom: 0;
   background-color: #fff;
   border-radius: 12px;
-  width: 60%;
-  height: 50%;
+  width: 100%;
+  height: 80%;
   border: 1px solid #f5f5f5;
   overflow: hidden;
   z-index: 10;
 }
-.model_header {
+.g_dialog_header {
   position: relative;
   height: 50px;
   padding-left: 10px;
@@ -59,35 +56,31 @@ export default {
   background-color: #f5f5f5;
   border-bottom: 1px solid rgb(177, 176, 176);
 }
-.model_body {
+.g_dialog_body {
   height: 150px;
   line-height: 150px;
   font-size: 28px;
   text-align: center;
   background-color: #fff;
 }
-.model_footer {
-  background-color: #f5f5f5;
-  height: 100px;
-  text-align: center;
-  line-height: 100px;
-}
-.btn {
-  width: 180px;
-  height: 40px;
-  border-radius: 8px;
-  background-color: rgb(180, 103, 103);
-  color: #fff;
-  font-size: 18px;
-  border: none;
-}
-.icon_close {
+.g_dialog_cancel {
   position: absolute;
-  background-color: pink;
+  font-size: 15px;
+  left: 5px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+  color: red;
+}
+.g_dialog_confirm {
+  position: absolute;
+  font-size: 15px;
   right: 15px;
   top: 16px;
   width: 30px;
   height: 30px;
   z-index: 10;
+  color: rgba(4, 155, 4, 0.801);
 }
 </style>
