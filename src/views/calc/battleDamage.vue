@@ -2,7 +2,11 @@
   <div class="bd-row">
     <div class="bd-column">
       <div class="bd-row">
-        <img class="img_unit_icon" :src="attackModel.iconSrc" />
+        <img
+          class="img_unit_icon"
+          :src="attackModel.iconSrc"
+          @click="onSelectAtkUnit"
+        />
         <UnitPicker
           selectDirection="column"
           @unitChanged="attackUnitChanged"
@@ -21,6 +25,7 @@
       <div>maxDamage = {{ attackModel.maxDamage }}</div>
       <div>avgDamage = {{ attackModel.avgDamage }}</div>
     </div>
+    <GDialog :showModel="showModel"></GDialog>
   </div>
 </template>
 
@@ -30,15 +35,18 @@ import UnitPicker from "@/components/UnitPicker.vue";
 import { TypeGSelectItem } from "../../types/commonType";
 import { battleUnitArray } from "../../../staticData/units";
 import { BattleDamageCalModel } from "../../types/commonType";
+import GDialog from "../../components/common/GDialog.vue";
 @Options({
   data() {
     return {
       attackModel: {},
       defenseModel: {},
+      showModel: Boolean,
     };
   },
   components: {
     UnitPicker,
+    GDialog,
   },
   methods: {},
 })
@@ -55,6 +63,9 @@ export default class BattleDamage extends Vue {
     calModel.attackValue = unit.attackValue;
     calModel.rangeAttackValue = unit.rangeAttackValue;
     calModel.iconSrc = require("../../assets/icons/" + unit.iconSrc);
+  }
+  onSelectAtkUnit() {
+    this.showModel = !this.showModel;
   }
   attackUnitChanged(item: TypeGSelectItem) {
     this.fullFillModel(this.attackModel, item.id);
@@ -109,6 +120,7 @@ export default class BattleDamage extends Vue {
   }
   attackModel!: BattleDamageCalModel;
   defenseModel!: BattleDamageCalModel;
+  showModel = false;
 }
 function calcAttackDamage(
   atk: number,
