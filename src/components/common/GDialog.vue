@@ -3,7 +3,7 @@
     <div class="g_dialog_mask"></div>
     <div class="g_dialog_shell">
       <div class="g_dialog_header">
-        <span>提示</span>
+        <span>{{ title }}</span>
         <a class="g_dialog_cancel" @click="$emit('cancel')">取消</a>
         <a class="g_dialog_confirm" @click="$emit('confirm')">确认</a>
       </div>
@@ -19,6 +19,7 @@ export default {
   name: "GDialog",
   props: {
     showDialog: Boolean,
+    title: String,
   },
 };
 </script>

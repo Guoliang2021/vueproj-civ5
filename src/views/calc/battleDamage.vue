@@ -27,6 +27,7 @@
     </div>
     <GDialog
       :showDialog="showDialog"
+      title="请选择攻击单位"
       @cancel="onCancel"
       @confirm="onConfirm"
     ></GDialog>
