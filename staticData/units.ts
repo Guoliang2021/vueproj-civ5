@@ -1,6 +1,7 @@
 import { eEra } from "./era";
 import { eNationality } from "./nation";
 import { eTechnology } from "./technology";
+import { UnitModel } from "../src/types/commonType";
 
 export enum eUnitType {
   UNIT_TYPE_ALL = 0,
@@ -116,6 +117,7 @@ export enum eUnit {
   UNIT_INCAN_SLINGER,
   UNIT_SPEARMAN,
   UNIT_CELT_PICTISH_WARRIOR,
+  UNIT_MAX, //TODO:
   UNIT_GREEK_HOPLITE,
   UNIT_PERSIAN_IMMORTAL,
   UNIT_HUN_BATTERING_RAM,
@@ -159,7 +161,7 @@ export enum eUnit {
   UNIT_AMERICAN_MINUTEMAN,
 }
 
-export const battleUnitArray = [
+export const battleUnitArray: Array<UnitModel> = [
   /*eg
    {
       id: 单位ID,取eUnit枚举值

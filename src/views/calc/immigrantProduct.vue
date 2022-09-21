@@ -1,17 +1,15 @@
 <template>
-  <div id="imm">
-    <label>abcd</label>
-    <label>efgh</label>
-    <label>ijkl</label>
-  </div>
+  <EUnitPicker></EUnitPicker>
 </template>
 
-<style lang="scss">
-#imm {
-  display: flex;
-  flex-direction: column;
-}
-label {
-  margin: 10px;
-}
-</style>
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import EUnitPicker from "@/components/EUnitPicker.vue";
+
+@Options({
+  components: {
+    EUnitPicker,
+  },
+})
+export default class ImmigrantProduct extends Vue {}
+</script>
