@@ -70,12 +70,12 @@ function initOption() {
 </script>
 
 <style lang="scss">
-.el-input {
-  width: fit-content;
-  min-width: 230px;
-}
 .el-cascader-menu {
   max-width: 140px;
   min-width: 10px;
+}
+.el-cascader {
+  max-width: 50%;
+  left: 25%;
 }
 </style>
