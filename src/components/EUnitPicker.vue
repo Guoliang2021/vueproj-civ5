@@ -1,8 +1,10 @@
 <template>
   <div>
-    <img :src="unitIconSrc" />
+    <div>
+      <img :src="unitIconSrc" />
+    </div>
+    <el-cascader :v-model="value" :options="options" @change="handleChange" />
   </div>
-  <el-cascader :v-model="value" :options="options" @change="handleChange" />
 </template>
 
 <script lang="ts">
@@ -20,11 +22,16 @@ export default class EUnitPicker extends Vue {
   value = [];
   options!: ECascaderOption[];
   unitIconSrc = require("../assets/icons/" + battleUnitArray[0].iconSrc);
+  currentUnitId = 0;
 
   handleChange(value: Array<number>) {
     let unitId = value[2];
-    this.unitIconSrc = require("../assets/icons/" +
-      battleUnitArray[unitId].iconSrc);
+    if (this.currentUnitId != unitId) {
+      this.unitIconSrc = require("../assets/icons/" +
+        battleUnitArray[unitId].iconSrc);
+      this.currentUnitId = unitId;
+      this.$emit("unitChanged", unitId);
+    }
   }
   created() {
     this.options = initOption();
@@ -74,8 +81,8 @@ function initOption() {
   max-width: 140px;
   min-width: 10px;
 }
-.el-cascader {
-  max-width: 50%;
-  left: 25%;
-}
+// .el-cascader {
+//   max-width: 50%;
+//   left: 25%;
+// }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <EUnitPicker></EUnitPicker>
+  <EUnitPicker @unitChanged="onUnitChanged"></EUnitPicker>
 </template>
 
 <script lang="ts">
@@ -11,5 +11,9 @@ import EUnitPicker from "@/components/EUnitPicker.vue";
     EUnitPicker,
   },
 })
-export default class ImmigrantProduct extends Vue {}
+export default class ImmigrantProduct extends Vue {
+  onUnitChanged(unitId: number) {
+    console.log(__filename, "unitChanged = ", unitId);
+  }
+}
 </script>
