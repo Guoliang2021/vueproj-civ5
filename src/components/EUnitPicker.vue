@@ -3,7 +3,12 @@
     <div>
       <img :src="unitIconSrc" />
     </div>
-    <el-cascader :v-model="value" :options="options" @change="handleChange" />
+    <el-cascader
+      :v-model="value"
+      :options="options"
+      @change="handleChange"
+      :show-all-levels="false"
+    />
   </div>
 </template>
 
@@ -81,8 +86,11 @@ function initOption() {
   max-width: 140px;
   min-width: 10px;
 }
-// .el-cascader {
-//   max-width: 50%;
-//   left: 25%;
-// }
+.el-input {
+  width: 120px !important;
+}
+img {
+  max-width: 120px;
+  max-height: 120px;
+}
 </style>
