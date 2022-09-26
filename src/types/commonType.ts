@@ -12,7 +12,6 @@ export interface BattleDamageCalModel {
   minDamage: string;
   maxDamage: string;
   avgDamage: string;
-  iconSrc: string;
 }
 
 export interface UnitModel {

@@ -1,7 +1,7 @@
 import { eEra } from "./era";
 import { eNationality } from "./nation";
 import { eTechnology } from "./technology";
-import { UnitModel } from "../src/types/commonType";
+import { UnitModel } from "../types/commonType";
 
 export enum eUnitType {
   UNIT_TYPE_ALL = 0,

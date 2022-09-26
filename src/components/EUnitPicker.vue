@@ -20,8 +20,8 @@ import {
   eUnit,
   eUnitType,
   unitTypeEnum2String,
-} from "../../staticData/units";
-import { eEra, eraEnum2String } from "../../staticData/era";
+} from "@/staticData/units";
+import { eEra, eraEnum2String } from "@/staticData/era";
 @Options({})
 export default class EUnitPicker extends Vue {
   value = [];
