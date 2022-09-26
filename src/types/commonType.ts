@@ -1,10 +1,3 @@
-export interface TypeGSelectItem {
-  name: string;
-  id: number;
-  type?: number;
-  era?: number;
-}
-
 export interface BattleDamageCalModel {
   unitname: string;
   unitId: number;
