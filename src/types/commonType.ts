@@ -10,6 +10,9 @@ export interface BattleDamageCalModel {
   rangeAttackValue: number;
   TerrainDefense: boolean;
 
+  //conditions
+  terrainId: number;
+
   // calculate params
   calcAttackValue: number;
   modifiedAttackValue: number;

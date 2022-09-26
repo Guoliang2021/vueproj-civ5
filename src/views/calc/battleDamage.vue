@@ -7,6 +7,11 @@
         <div>
           <EUnitPicker @unitChanged="onAttackUnitChange"></EUnitPicker>
         </div>
+        <div>
+          <ETerrainPicker
+            @terrainChanged="onAttackTerrainChange"
+          ></ETerrainPicker>
+        </div>
         <div>原始战斗力:{{ attackModel.calcAttackValue }}</div>
       </el-col>
 
@@ -14,6 +19,11 @@
       <el-col :span="12">
         <div>
           <EUnitPicker @unitChanged="onDefenseUnitChange"></EUnitPicker>
+        </div>
+        <div>
+          <ETerrainPicker
+            @terrainChanged="onDefenseTerrainChange"
+          ></ETerrainPicker>
         </div>
         <div>原始战斗力:{{ defenseModel.calcAttackValue }}</div>
       </el-col>
@@ -49,6 +59,8 @@ import { Options, Vue } from "vue-class-component";
 import EUnitPicker from "@/components/EUnitPicker.vue";
 import { BattleDamageCalModel } from "@/types/commonType";
 import { battleUnitArray } from "@/staticData/units";
+import ETerrainPicker from "@/components/ETerrainPicker.vue";
+import { terrainEnum2Info } from "@/staticData/terrain";
 @Options({
   data() {
     return {
@@ -58,6 +70,7 @@ import { battleUnitArray } from "@/staticData/units";
   },
   components: {
     EUnitPicker,
+    ETerrainPicker,
   },
 })
 export default class BattleDamage extends Vue {
@@ -76,7 +89,14 @@ export default class BattleDamage extends Vue {
     this.attackValueConfirm();
     this.calcBattleDamage();
   }
-
+  onAttackTerrainChange(terrainId: number) {
+    this.attackModel.terrainId = terrainId;
+    this.calcBattleDamage();
+  }
+  onDefenseTerrainChange(terrainId: number) {
+    this.defenseModel.terrainId = terrainId;
+    this.calcBattleDamage();
+  }
   //functions
   // 初始化计算模型
   initCalcModel(unitId: number, attack: boolean) {
@@ -91,6 +111,8 @@ export default class BattleDamage extends Vue {
       attackValue: unit.attackValue,
       rangeAttackValue: unit.rangeAttackValue,
       unitname: unit.name,
+
+      terrainId: 0,
 
       calcAttackValue: 0,
       modifiedAttackValue: 0,
@@ -117,8 +139,17 @@ export default class BattleDamage extends Vue {
 
   // 战斗力修正
   attackModify() {
-    this.attackModel.modifiedAttackValue = this.attackModel.calcAttackValue;
-    this.defenseModel.modifiedAttackValue = this.defenseModel.calcAttackValue;
+    let atk = this.attackModel.calcAttackValue;
+    let def = this.defenseModel.calcAttackValue;
+
+    let defCoe = 0;
+    let defTerrain = terrainEnum2Info(this.defenseModel.terrainId);
+    if (this.defenseModel.TerrainDefense || !defTerrain.rugged) {
+      defCoe += defTerrain.modify;
+    }
+    this.attackModel.modifiedAttackValue = atk;
+    console.log(defCoe);
+    this.defenseModel.modifiedAttackValue = (def * (100 + defCoe)) / 100;
   }
 
   // 计算伤害
