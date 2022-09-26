@@ -1,4 +1,5 @@
 export interface BattleDamageCalModel {
+  // unit props
   unitname: string;
   unitId: number;
   unitType: number;
@@ -7,8 +8,11 @@ export interface BattleDamageCalModel {
   attackRange: number;
   attackValue: number;
   rangeAttackValue: number;
-  modifiedAttackValue: number;
   TerrainDefense: boolean;
+
+  // calculate params
+  calcAttackValue: number;
+  modifiedAttackValue: number;
   minDamage: string;
   maxDamage: string;
   avgDamage: string;
