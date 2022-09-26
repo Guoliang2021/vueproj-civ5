@@ -44,3 +44,8 @@ export interface ECascaderOption {
   label: string;
   children: ECascaderOption[];
 }
+
+export interface ETerrainPickerOption {
+  value: number;
+  label: string;
+}
