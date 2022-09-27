@@ -10,7 +10,7 @@
         <div>
           <ETerrainPicker
             @terrainChanged="onAttackTerrainChange"
-            :disable="attackModel.unitType === unitTypeCity"
+            :disabled="attackModel.unitType === unitTypeCity"
           ></ETerrainPicker>
         </div>
         <div>
@@ -18,6 +18,14 @@
             class="el-slider-health"
             v-model="attackModel.health"
             @change="onAttackHealthChange"
+          />
+        </div>
+        <div>
+          <el-slider
+            class="el-slider-citydefence"
+            v-model="attackModel.calcAttackValue"
+            @change="onAttackCityDefenceChange"
+            :disabled="attackModel.unitType != unitTypeCity"
           />
         </div>
         <div>
@@ -48,7 +56,7 @@
         <div>
           <ETerrainPicker
             @terrainChanged="onDefenseTerrainChange"
-            :disable="defenseModel.unitType === unitTypeCity"
+            :disabled="defenseModel.unitType === unitTypeCity"
           ></ETerrainPicker>
         </div>
         <div>
@@ -56,6 +64,14 @@
             class="el-slider-health"
             v-model="defenseModel.health"
             @change="onDefenseHealthChange"
+          />
+        </div>
+        <div>
+          <el-slider
+            class="el-slider-citydefence"
+            v-model="defenseModel.calcAttackValue"
+            @change="onDefenseCityDefenceChange"
+            :disabled="defenseModel.unitType != unitTypeCity"
           />
         </div>
         <div>
@@ -124,6 +140,14 @@ export default class BattleDamage extends Vue {
   }
   onDefenseHealthChange(health: number) {
     this.defenseModel.health = health;
+    this.calcBattleDamage();
+  }
+  onAttackCityDefenceChange(defence: number) {
+    this.attackModel.calcAttackValue = defence;
+    this.calcBattleDamage();
+  }
+  onDefenseCityDefenceChange(defence: number) {
+    this.defenseModel.calcAttackValue = defence;
     this.calcBattleDamage();
   }
   onAttackHappinessChange(happiness: number) {
@@ -267,6 +291,18 @@ export default class BattleDamage extends Vue {
     width: 15px;
     height: 15px;
     border: solid 2px red;
+  }
+}
+.el-slider-citydefence {
+  max-width: 50%;
+  margin-left: 25%;
+  .el-slider__bar {
+    background-color: blue;
+  }
+  .el-slider__button {
+    width: 15px;
+    height: 15px;
+    border: solid 2px blue;
   }
 }
 </style>
