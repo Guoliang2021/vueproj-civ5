@@ -30,7 +30,7 @@ export interface UnitModel {
   type: number;
   nationality: number;
   substitution: number;
-  promote: number;
+  upgrade: number;
   cost: number;
   closeCombat: boolean;
   attackRange: number;
