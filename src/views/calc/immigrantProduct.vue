@@ -1,16 +1,14 @@
 <template>
   <div id="imm">
-    <ETerrainPicker></ETerrainPicker>
+    <EPromotionBox></EPromotionBox>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import ETerrainPicker from "@/components/ETerrainPicker.vue";
+import EPromotionBox from "@/components/EPromotionBox.vue";
 @Options({
-  components: {
-    ETerrainPicker,
-  },
+  components: { EPromotionBox },
 })
 export default class ImmigrantProduct extends Vue {}
 </script>
