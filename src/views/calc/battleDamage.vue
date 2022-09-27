@@ -13,6 +13,12 @@
           ></ETerrainPicker>
         </div>
         <div>
+          <el-slider
+            v-model="attackModel.health"
+            @change="onAttackHealthChange"
+          />
+        </div>
+        <div>
           战斗力:{{ attackModel.calcAttackValue }}/{{
             attackModel.modifiedAttackValue
           }}
@@ -33,6 +39,12 @@
           <ETerrainPicker
             @terrainChanged="onDefenseTerrainChange"
           ></ETerrainPicker>
+        </div>
+        <div>
+          <el-slider
+            v-model="defenseModel.health"
+            @change="onDefenseHealthChange"
+          />
         </div>
         <div>
           战斗力:{{ defenseModel.calcAttackValue }}/{{
@@ -115,6 +127,15 @@ export default class BattleDamage extends Vue {
     this.defenseModel.terrainId = terrainId;
     this.calcBattleDamage();
   }
+  onAttackHealthChange(health: number) {
+    this.attackModel.health = health;
+    this.calcBattleDamage();
+  }
+  onDefenseHealthChange(health: number) {
+    this.defenseModel.health = health;
+    this.calcBattleDamage();
+  }
+
   //functions
   // 初始化计算模型
   initCalcModel(unitId: number, attack: boolean) {
@@ -131,6 +152,7 @@ export default class BattleDamage extends Vue {
       unitname: unit.name,
 
       terrainId: 0,
+      health: 100,
 
       calcAttackValue: 0,
       modifiedAttackValue: 0,
@@ -176,9 +198,10 @@ export default class BattleDamage extends Vue {
     let def = this.defenseModel.modifiedAttackValue;
     let atkAvgDamage = 0;
     let defAvgDamage = 0;
-    let health = 100; //TODO:
-    atkAvgDamage = this.attackDamageCalc(atk, def, 30, health);
-    defAvgDamage = this.defenseDamageCalc(atk, def, 30, health);
+    let atkhealth = this.attackModel.health;
+    let defhealth = this.defenseModel.health;
+    atkAvgDamage = this.attackDamageCalc(atk, def, 30, atkhealth);
+    defAvgDamage = this.defenseDamageCalc(atk, def, 30, defhealth);
     this.attackModel.minDamage = ((atkAvgDamage * 24) / 30).toFixed(1);
     this.attackModel.maxDamage = ((atkAvgDamage * 36) / 30).toFixed(1);
     this.attackModel.avgDamage = atkAvgDamage.toFixed(1);
@@ -219,4 +242,17 @@ export default class BattleDamage extends Vue {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.el-slider {
+  max-width: 50%;
+  margin-left: 25%;
+}
+.el-slider__bar {
+  background-color: red;
+}
+.el-slider__button {
+  width: 15px;
+  height: 15px;
+  border: solid 2px red;
+}
+</style>

@@ -12,6 +12,7 @@ export interface BattleDamageCalModel {
 
   //conditions
   terrainId: number;
+  health: number;
 
   // calculate params
   calcAttackValue: number;
