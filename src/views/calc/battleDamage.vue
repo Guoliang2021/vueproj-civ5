@@ -12,7 +12,16 @@
             @terrainChanged="onAttackTerrainChange"
           ></ETerrainPicker>
         </div>
-        <div>原始战斗力:{{ attackModel.calcAttackValue }}</div>
+        <div>
+          战斗力:{{ attackModel.calcAttackValue }}/{{
+            attackModel.modifiedAttackValue
+          }}
+        </div>
+        <div>
+          伤害:{{ attackModel.minDamage }}/{{ attackModel.avgDamage }}/{{
+            attackModel.maxDamage
+          }}
+        </div>
       </el-col>
 
       <!-- defense -->
@@ -25,11 +34,20 @@
             @terrainChanged="onDefenseTerrainChange"
           ></ETerrainPicker>
         </div>
-        <div>原始战斗力:{{ defenseModel.calcAttackValue }}</div>
+        <div>
+          战斗力:{{ defenseModel.calcAttackValue }}/{{
+            defenseModel.modifiedAttackValue
+          }}
+        </div>
+        <div v-if="attackModel.closeCombat">
+          反伤:{{ defenseModel.minDamage }}/{{ defenseModel.avgDamage }}/{{
+            defenseModel.maxDamage
+          }}
+        </div>
       </el-col>
     </el-row>
     <!-- output -->
-    <el-row>
+    <!-- <el-row>
       <el-col :span="8">
         <div>min:{{ attackModel.minDamage }}</div>
       </el-col>
@@ -50,7 +68,7 @@
       <el-col :span="8">
         <div>avg:{{ defenseModel.avgDamage }}</div>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 
@@ -148,7 +166,6 @@ export default class BattleDamage extends Vue {
       defCoe += defTerrain.modify;
     }
     this.attackModel.modifiedAttackValue = atk;
-    console.log(defCoe);
     this.defenseModel.modifiedAttackValue = (def * (100 + defCoe)) / 100;
   }
 

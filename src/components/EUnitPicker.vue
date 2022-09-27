@@ -8,6 +8,7 @@
       :options="options"
       @change="handleChange"
       :show-all-levels="false"
+      placeholder="斥候"
     />
   </div>
 </template>
@@ -26,8 +27,9 @@ import { eEra, eraEnum2String } from "@/staticData/era";
 export default class EUnitPicker extends Vue {
   value = [];
   options!: ECascaderOption[];
-  unitIconSrc = require("../assets/icons/" + battleUnitArray[0].iconSrc);
-  currentUnitId = 0;
+  unitIconSrc = require("../assets/icons/" +
+    battleUnitArray[eUnit.UNIT_SCOUT].iconSrc);
+  currentUnitId = eUnit.UNIT_SCOUT;
 
   handleChange(value: Array<number>) {
     let unitId = value[2];
@@ -40,6 +42,7 @@ export default class EUnitPicker extends Vue {
   }
   created() {
     this.options = initOption();
+    this.$emit("unitChanged", this.currentUnitId);
   }
 }
 
