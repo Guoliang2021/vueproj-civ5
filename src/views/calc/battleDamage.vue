@@ -14,8 +14,17 @@
         </div>
         <div>
           <el-slider
+            class="el-slider-health"
             v-model="attackModel.health"
             @change="onAttackHealthChange"
+          />
+        </div>
+        <div>
+          <el-slider
+            class="el-slider-happiness"
+            v-model="attackModel.happiness"
+            @change="onAttackHappinessChange"
+            :max="20"
           />
         </div>
         <div>
@@ -42,6 +51,7 @@
         </div>
         <div>
           <el-slider
+            class="el-slider-health"
             v-model="defenseModel.health"
             @change="onDefenseHealthChange"
           />
@@ -58,29 +68,6 @@
         </div>
       </el-col>
     </el-row>
-    <!-- output -->
-    <!-- <el-row>
-      <el-col :span="8">
-        <div>min:{{ attackModel.minDamage }}</div>
-      </el-col>
-      <el-col :span="8">
-        <div>max:{{ attackModel.maxDamage }}</div>
-      </el-col>
-      <el-col :span="8">
-        <div>avg:{{ attackModel.avgDamage }}</div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="8">
-        <div>min:{{ defenseModel.minDamage }}</div>
-      </el-col>
-      <el-col :span="8">
-        <div>max:{{ defenseModel.maxDamage }}</div>
-      </el-col>
-      <el-col :span="8">
-        <div>avg:{{ defenseModel.avgDamage }}</div>
-      </el-col>
-    </el-row> -->
   </div>
 </template>
 
@@ -135,6 +122,10 @@ export default class BattleDamage extends Vue {
     this.defenseModel.health = health;
     this.calcBattleDamage();
   }
+  onAttackHappinessChange(happiness: number) {
+    this.attackModel.happiness = happiness;
+    this.calcBattleDamage();
+  }
 
   //functions
   // 初始化计算模型
@@ -153,6 +144,7 @@ export default class BattleDamage extends Vue {
 
       terrainId: 0,
       health: 100,
+      happiness: 0,
 
       calcAttackValue: 0,
       modifiedAttackValue: 0,
@@ -182,12 +174,18 @@ export default class BattleDamage extends Vue {
     let atk = this.attackModel.calcAttackValue;
     let def = this.defenseModel.calcAttackValue;
 
+    let atkCoe = 0;
     let defCoe = 0;
+    if (this.attackModel.happiness < 20) {
+      atkCoe -= 2 * this.attackModel.happiness;
+    } else {
+      atkCoe -= 40;
+    }
     let defTerrain = terrainEnum2Info(this.defenseModel.terrainId);
     if (this.defenseModel.TerrainDefense || !defTerrain.rugged) {
       defCoe += defTerrain.modify;
     }
-    this.attackModel.modifiedAttackValue = atk;
+    this.attackModel.modifiedAttackValue = (atk * (100 + atkCoe)) / 100;
     this.defenseModel.modifiedAttackValue = (def * (100 + defCoe)) / 100;
   }
 
@@ -243,16 +241,28 @@ export default class BattleDamage extends Vue {
 </script>
 
 <style lang="scss">
-.el-slider {
+.el-slider-health {
   max-width: 50%;
   margin-left: 25%;
+  .el-slider__bar {
+    background-color: green;
+  }
+  .el-slider__button {
+    width: 15px;
+    height: 15px;
+    border: solid 2px green;
+  }
 }
-.el-slider__bar {
-  background-color: red;
-}
-.el-slider__button {
-  width: 15px;
-  height: 15px;
-  border: solid 2px red;
+.el-slider-happiness {
+  max-width: 50%;
+  margin-left: 25%;
+  .el-slider__bar {
+    background-color: red;
+  }
+  .el-slider__button {
+    width: 15px;
+    height: 15px;
+    border: solid 2px red;
+  }
 }
 </style>
