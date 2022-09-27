@@ -10,6 +10,7 @@
         <div>
           <ETerrainPicker
             @terrainChanged="onAttackTerrainChange"
+            :disable="attackModel.unitType === unitTypeCity"
           ></ETerrainPicker>
         </div>
         <div>
@@ -47,6 +48,7 @@
         <div>
           <ETerrainPicker
             @terrainChanged="onDefenseTerrainChange"
+            :disable="defenseModel.unitType === unitTypeCity"
           ></ETerrainPicker>
         </div>
         <div>
@@ -78,6 +80,7 @@ import { BattleDamageCalModel } from "@/types/commonType";
 import { battleUnitArray } from "@/staticData/units";
 import ETerrainPicker from "@/components/ETerrainPicker.vue";
 import { terrainEnum2Info } from "@/staticData/terrain";
+import { eUnitType } from "@/staticData/units";
 @Options({
   data() {
     return {
@@ -94,6 +97,7 @@ export default class BattleDamage extends Vue {
   // properties
   attackModel!: BattleDamageCalModel;
   defenseModel!: BattleDamageCalModel;
+  unitTypeCity = eUnitType.UNIT_TYPE_CITY;
 
   //slots
   onAttackUnitChange(unitId: number) {

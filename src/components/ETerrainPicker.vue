@@ -1,6 +1,11 @@
 <template>
   <div>
-    <el-select v-model="value" @change="handleChange" placeholder="平地">
+    <el-select
+      v-model="value"
+      @change="handleChange"
+      placeholder="平地"
+      :disabled="disable"
+    >
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -15,11 +20,16 @@
 import { Options, Vue } from "vue-class-component";
 import { ETerrainPickerOption } from "@/types/commonType";
 import { eTerrainType, terrainEnum2Info } from "@/staticData/terrain";
-@Options({})
+@Options({
+  props: {
+    disable: Boolean,
+  },
+})
 export default class ETerrainPicker extends Vue {
   options!: ETerrainPickerOption[];
   value = [];
   currentTerrainId = 0;
+  disable!: boolean;
   handleChange(value: number) {
     if (this.currentTerrainId != value) {
       this.currentTerrainId = value;
