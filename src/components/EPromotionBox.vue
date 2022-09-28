@@ -39,6 +39,11 @@ import { Options, Vue } from "vue-class-component";
   props: {
     unitID: Number,
   },
+  watch: {
+    unitID(newID) {
+      console.log(newID);
+    },
+  },
 })
 export default class EPromotionBox extends Vue {
   checkboxGroup = [];
