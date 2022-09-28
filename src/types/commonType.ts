@@ -56,6 +56,7 @@ export interface PromotionModel {
   targetModify: number;
   barbarainOnly: boolean;
   description: string;
+  iconName: string;
 }
 
 export interface ECascaderOption {
