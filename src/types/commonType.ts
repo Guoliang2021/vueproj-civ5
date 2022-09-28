@@ -36,12 +36,26 @@ export interface UnitModel {
   attackRange: number;
   attackValue: number;
   rangeAttackValue: number;
-  TerrainDefense: boolean;
+  terrainDefense: boolean;
   movement: number;
   resource: number;
   startTechnology: number;
   endTechnology: number;
   iconSrc: string;
+}
+
+export interface PromotionModel {
+  id: number;
+  name: string;
+  scene: number;
+  selfUnitType: number;
+  selfTerrainType: number;
+  selfModify: number;
+  targetUnitType: number;
+  targetTerrainType: number;
+  targetModify: number;
+  barbarainOnly: boolean;
+  description: string;
 }
 
 export interface ECascaderOption {
@@ -53,4 +67,11 @@ export interface ECascaderOption {
 export interface ETerrainPickerOption {
   value: number;
   label: string;
+}
+
+export interface EPromotionBoxOption {
+  value: number;
+  label: string;
+  checked: boolean;
+  disabled: boolean;
 }

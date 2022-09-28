@@ -162,7 +162,7 @@ export default class BattleDamage extends Vue {
     let model: BattleDamageCalModel = {
       unitId: unitId,
       unitType: unit.type,
-      TerrainDefense: unit.TerrainDefense,
+      TerrainDefense: unit.terrainDefense,
       closeCombat: unit.closeCombat,
       nationality: unit.nationality,
       attackRange: unit.attackRange,
