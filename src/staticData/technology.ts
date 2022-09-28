@@ -102,264 +102,11 @@ export enum eTechnology {
   TECH_FUTURE_TECH,
 }
 
-export function techEnum2String(tech: number) {
-  let retVal!: string;
-  switch (tech) {
-    case eTechnology.TECH_AGRICULTURE:
-      retVal = "农业";
-      break;
-    case eTechnology.TECH_POTTERY:
-      retVal = "制陶";
-      break;
-    case eTechnology.TECH_ANIMAL_HUSBANDRY:
-      retVal = "畜牧";
-      break;
-    case eTechnology.TECH_ARCHERY:
-      retVal = "弓箭";
-      break;
-    case eTechnology.TECH_MINING:
-      retVal = "采矿";
-      break;
-    case eTechnology.TECH_SAILING:
-      retVal = "航海";
-      break;
-    case eTechnology.TECH_CALENDAR:
-      retVal = "历法";
-      break;
-    case eTechnology.TECH_WRITING:
-      retVal = "书写";
-      break;
-    case eTechnology.TECH_TRAPPING:
-      retVal = "捕猎";
-      break;
-    case eTechnology.TECH_THE_WHEEL:
-      retVal = "车轮";
-      break;
-    case eTechnology.TECH_MASONRY:
-      retVal = "石工";
-      break;
-    case eTechnology.TECH_BRONZE_WORKING:
-      retVal = "青铜";
-      break;
-    case eTechnology.TECH_OPTICS:
-      retVal = "光学";
-      break;
-    case eTechnology.TECH_HORSEBACK_RIDING:
-      retVal = "骑术";
-      break;
-    case eTechnology.TECH_MATHEMATICS:
-      retVal = "数学";
-      break;
-    case eTechnology.TECH_CONSTRUCTION:
-      retVal = "建造学";
-      break;
-    case eTechnology.TECH_PHILOSOPHY:
-      retVal = "哲学";
-      break;
-    case eTechnology.TECH_DRAMA:
-      retVal = "戏剧";
-      break;
-    case eTechnology.TECH_CURRENCY:
-      retVal = "货币";
-      break;
-    case eTechnology.TECH_ENGINEERING:
-      retVal = "工程学";
-      break;
-    case eTechnology.TECH_IRON_WORKING:
-      retVal = "铁器";
-      break;
-    case eTechnology.TECH_THEOLOGY:
-      retVal = "神学";
-      break;
-    case eTechnology.TECH_CIVIL_SERVICE:
-      retVal = "文官";
-      break;
-    case eTechnology.TECH_GUILDS:
-      retVal = "行会";
-      break;
-    case eTechnology.TECH_METAL_CASTING:
-      retVal = "铸造";
-      break;
-    case eTechnology.TECH_COMPASS:
-      retVal = "罗盘";
-      break;
-    case eTechnology.TECH_EDUCATION:
-      retVal = "教育";
-      break;
-    case eTechnology.TECH_CHIVALRY:
-      retVal = "骑士";
-      break;
-    case eTechnology.TECH_MACHINERY:
-      retVal = "机械";
-      break;
-    case eTechnology.TECH_PHYSICS:
-      retVal = "物理学";
-      break;
-    case eTechnology.TECH_STEEL:
-      retVal = "炼钢";
-      break;
-    case eTechnology.TECH_ASTRONOMY:
-      retVal = "天文学";
-      break;
-    case eTechnology.TECH_ACOUSTICS:
-      retVal = "声学";
-      break;
-    case eTechnology.TECH_BANKING:
-      retVal = "银行";
-      break;
-    case eTechnology.TECH_PRINTING_PRESS:
-      retVal = "印刷";
-      break;
-    case eTechnology.TECH_GUNPOWDER:
-      retVal = "火药";
-      break;
-    case eTechnology.TECH_NAVIGATION:
-      retVal = "导航";
-      break;
-    case eTechnology.TECH_ARCHITECTURE:
-      retVal = "建筑学";
-      break;
-    case eTechnology.TECH_ECONOMICS:
-      retVal = "经济学";
-      break;
-    case eTechnology.TECH_METALLURGY:
-      retVal = "冶金";
-      break;
-    case eTechnology.TECH_CHEMISTRY:
-      retVal = "化学";
-      break;
-    case eTechnology.TECH_ARCHAEOLOGY:
-      retVal = "考古学";
-      break;
-    case eTechnology.TECH_SCIENTIFIC_THEORY:
-      retVal = "科学理论";
-      break;
-    case eTechnology.TECH_INDUSTRIALIZATION:
-      retVal = "工业化";
-      break;
-    case eTechnology.TECH_RIFLING:
-      retVal = "膛线";
-      break;
-    case eTechnology.TECH_MILITARY_SCIENCE:
-      retVal = "军事科学";
-      break;
-    case eTechnology.TECH_FERTILIZER:
-      retVal = "化肥";
-      break;
-    case eTechnology.TECH_BIOLOGY:
-      retVal = "生物学";
-      break;
-    case eTechnology.TECH_ELECTRICITY:
-      retVal = "电力";
-      break;
-    case eTechnology.TECH_STEAM_POWER:
-      retVal = "蒸汽动力";
-      break;
-    case eTechnology.TECH_DYNAMITE:
-      retVal = "炸药";
-      break;
-    case eTechnology.TECH_REFRIGERATION:
-      retVal = "制冷";
-      break;
-    case eTechnology.TECH_RADIO:
-      retVal = "无线电";
-      break;
-    case eTechnology.TECH_REPLACEABLE_PARTS:
-      retVal = "零组件";
-      break;
-    case eTechnology.TECH_FLIGHT:
-      retVal = "航空";
-      break;
-    case eTechnology.TECH_RAILROAD:
-      retVal = "铁路";
-      break;
-    case eTechnology.TECH_PLASTIC:
-      retVal = "塑料";
-      break;
-    case eTechnology.TECH_ELECTRONICS:
-      retVal = "电子学";
-      break;
-    case eTechnology.TECH_BALLISTICS:
-      retVal = "弹道学";
-      break;
-    case eTechnology.TECH_COMBUSTION:
-      retVal = "内燃机";
-      break;
-    case eTechnology.TECH_PENICILIN:
-      retVal = "青霉素";
-      break;
-    case eTechnology.TECH_ATOMIC_THEORY:
-      retVal = "原子理论";
-      break;
-    case eTechnology.TECH_RADAR:
-      retVal = "雷达";
-      break;
-    case eTechnology.TECH_COMBINED_ARMS:
-      retVal = "联合兵种";
-      break;
-    case eTechnology.TECH_ECOLOGY:
-      retVal = "生态学";
-      break;
-    case eTechnology.TECH_NUCLEAR_FISSION:
-      retVal = "核裂变";
-      break;
-    case eTechnology.TECH_ROCKETRY:
-      retVal = "火箭学";
-      break;
-    case eTechnology.TECH_COMPUTERS:
-      retVal = "计算机";
-      break;
-    case eTechnology.TECH_TELECOM:
-      retVal = "电信科技";
-      break;
-    case eTechnology.TECH_MOBILE_TACTICS:
-      retVal = "机动战术";
-      break;
-    case eTechnology.TECH_ADVANCED_BALLISTICS:
-      retVal = "高级弹道学";
-      break;
-    case eTechnology.TECH_SATELLITES:
-      retVal = "卫星";
-      break;
-    case eTechnology.TECH_ROBOTICS:
-      retVal = "机器人学";
-      break;
-    case eTechnology.TECH_LASERS:
-      retVal = "镭射";
-      break;
-    case eTechnology.TECH_INTERNET:
-      retVal = "网络";
-      break;
-    case eTechnology.TECH_GLOBALIZATION:
-      retVal = "全球化";
-      break;
-    case eTechnology.TECH_PARTICLE_PHYSICS:
-      retVal = "粒子物理学";
-      break;
-    case eTechnology.TECH_NUCLEAR_FUSION:
-      retVal = "核聚变";
-      break;
-    case eTechnology.TECH_NANOTECHNOLOGY:
-      retVal = "纳米科技";
-      break;
-    case eTechnology.TECH_STEALTH:
-      retVal = "隐形技术";
-      break;
-    case eTechnology.TECH_FUTURE_TECH:
-      retVal = "未来科技";
-      break;
-    default:
-      retVal = "未定义";
-      break;
-  }
-  return retVal;
-}
-
 export const technologiesArray = [
   /*eg.
   {
     id: 科技ID,取eTechnology枚举值
-    name: 科技名,使用id配合techEnum2String转换
+    name: 科技名
     era: 科技所处时代,取eEra枚举值
     cost: 获得科技所需瓶子数量(不计算科研惩罚)
     preTechList:前置科技ID列表
@@ -369,84 +116,84 @@ export const technologiesArray = [
   /*ancient */
   {
     id: eTechnology.TECH_AGRICULTURE,
-    name: techEnum2String(eTechnology.TECH_AGRICULTURE),
+    name: "农业",
     era: eEra.ERA_ANCIENT,
     cost: 20,
     preTechList: [],
   },
   {
     id: eTechnology.TECH_POTTERY,
-    name: techEnum2String(eTechnology.TECH_POTTERY),
+    name: "制陶",
     era: eEra.ERA_ANCIENT,
     cost: 35,
     preTechList: [eTechnology.TECH_AGRICULTURE],
   },
   {
     id: eTechnology.TECH_ANIMAL_HUSBANDRY,
-    name: techEnum2String(eTechnology.TECH_ANIMAL_HUSBANDRY),
+    name: "畜牧",
     era: eEra.ERA_ANCIENT,
     cost: 35,
     preTechList: [eTechnology.TECH_AGRICULTURE],
   },
   {
     id: eTechnology.TECH_ARCHERY,
-    name: techEnum2String(eTechnology.TECH_ARCHERY),
+    name: "弓箭",
     era: eEra.ERA_ANCIENT,
     cost: 35,
     preTechList: [eTechnology.TECH_AGRICULTURE],
   },
   {
     id: eTechnology.TECH_MINING,
-    name: techEnum2String(eTechnology.TECH_MINING),
+    name: "采矿",
     era: eEra.ERA_ANCIENT,
     cost: 35,
     preTechList: [eTechnology.TECH_AGRICULTURE],
   },
   {
     id: eTechnology.TECH_SAILING,
-    name: techEnum2String(eTechnology.TECH_SAILING),
+    name: "航海",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_POTTERY],
   },
   {
     id: eTechnology.TECH_CALENDAR,
-    name: techEnum2String(eTechnology.TECH_CALENDAR),
+    name: "历法",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_POTTERY],
   },
   {
     id: eTechnology.TECH_WRITING,
-    name: techEnum2String(eTechnology.TECH_WRITING),
+    name: "书写",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_POTTERY],
   },
   {
     id: eTechnology.TECH_TRAPPING,
-    name: techEnum2String(eTechnology.TECH_TRAPPING),
+    name: "捕猎",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_ANIMAL_HUSBANDRY],
   },
   {
     id: eTechnology.TECH_THE_WHEEL,
-    name: techEnum2String(eTechnology.TECH_THE_WHEEL),
+    name: "车轮",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_ANIMAL_HUSBANDRY, eTechnology.TECH_ARCHERY],
   },
   {
     id: eTechnology.TECH_MASONRY,
-    name: techEnum2String(eTechnology.TECH_MASONRY),
+    name: "石工",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_MINING],
   },
   {
     id: eTechnology.TECH_BRONZE_WORKING,
-    name: techEnum2String(eTechnology.TECH_BRONZE_WORKING),
+    name: "青铜",
     era: eEra.ERA_ANCIENT,
     cost: 55,
     preTechList: [eTechnology.TECH_MINING],
@@ -455,63 +202,63 @@ export const technologiesArray = [
   /*classical */
   {
     id: eTechnology.TECH_OPTICS,
-    name: techEnum2String(eTechnology.TECH_OPTICS),
+    name: "光学",
     era: eEra.ERA_CLASSICAL,
     cost: 85,
     preTechList: [eTechnology.TECH_SAILING],
   },
   {
     id: eTechnology.TECH_HORSEBACK_RIDING,
-    name: techEnum2String(eTechnology.TECH_HORSEBACK_RIDING),
+    name: "骑术",
     era: eEra.ERA_CLASSICAL,
     cost: 105,
     preTechList: [eTechnology.TECH_TRAPPING, eTechnology.TECH_THE_WHEEL],
   },
   {
     id: eTechnology.TECH_MATHEMATICS,
-    name: techEnum2String(eTechnology.TECH_MATHEMATICS),
+    name: "数学",
     era: eEra.ERA_CLASSICAL,
     cost: 105,
     preTechList: [eTechnology.TECH_THE_WHEEL],
   },
   {
     id: eTechnology.TECH_CONSTRUCTION,
-    name: techEnum2String(eTechnology.TECH_CONSTRUCTION),
+    name: "建造学",
     era: eEra.ERA_CLASSICAL,
     cost: 105,
     preTechList: [eTechnology.TECH_THE_WHEEL, eTechnology.TECH_MASONRY],
   },
   {
     id: eTechnology.TECH_PHILOSOPHY,
-    name: techEnum2String(eTechnology.TECH_PHILOSOPHY),
+    name: "哲学",
     era: eEra.ERA_CLASSICAL,
     cost: 175,
     preTechList: [eTechnology.TECH_CALENDAR, eTechnology.TECH_WRITING],
   },
   {
     id: eTechnology.TECH_DRAMA,
-    name: techEnum2String(eTechnology.TECH_DRAMA),
+    name: "戏剧",
     era: eEra.ERA_CLASSICAL,
     cost: 175,
     preTechList: [eTechnology.TECH_WRITING],
   },
   {
     id: eTechnology.TECH_CURRENCY,
-    name: techEnum2String(eTechnology.TECH_CURRENCY),
+    name: "货币",
     era: eEra.ERA_CLASSICAL,
     cost: 175,
     preTechList: [eTechnology.TECH_MATHEMATICS],
   },
   {
     id: eTechnology.TECH_ENGINEERING,
-    name: techEnum2String(eTechnology.TECH_ENGINEERING),
+    name: "工程学",
     era: eEra.ERA_CLASSICAL,
     cost: 175,
     preTechList: [eTechnology.TECH_MATHEMATICS, eTechnology.TECH_CONSTRUCTION],
   },
   {
     id: eTechnology.TECH_IRON_WORKING,
-    name: techEnum2String(eTechnology.TECH_IRON_WORKING),
+    name: "铁器",
     era: eEra.ERA_CLASSICAL,
     cost: 175,
     preTechList: [eTechnology.TECH_BRONZE_WORKING],
@@ -520,14 +267,14 @@ export const technologiesArray = [
   /*medieval */
   {
     id: eTechnology.TECH_THEOLOGY,
-    name: techEnum2String(eTechnology.TECH_THEOLOGY),
+    name: "神学",
     era: eEra.ERA_MEDIEVAL,
     cost: 275,
     preTechList: [eTechnology.TECH_PHILOSOPHY, eTechnology.TECH_DRAMA],
   },
   {
     id: eTechnology.TECH_CIVIL_SERVICE,
-    name: techEnum2String(eTechnology.TECH_CIVIL_SERVICE),
+    name: "文官",
     era: eEra.ERA_MEDIEVAL,
     cost: 275,
     preTechList: [
@@ -538,56 +285,56 @@ export const technologiesArray = [
   },
   {
     id: eTechnology.TECH_GUILDS,
-    name: techEnum2String(eTechnology.TECH_GUILDS),
+    name: "行会",
     era: eEra.ERA_MEDIEVAL,
     cost: 275,
     preTechList: [eTechnology.TECH_CURRENCY],
   },
   {
     id: eTechnology.TECH_METAL_CASTING,
-    name: techEnum2String(eTechnology.TECH_METAL_CASTING),
+    name: "铸造",
     era: eEra.ERA_MEDIEVAL,
     cost: 275,
     preTechList: [eTechnology.TECH_ENGINEERING, eTechnology.TECH_IRON_WORKING],
   },
   {
     id: eTechnology.TECH_COMPASS,
-    name: techEnum2String(eTechnology.TECH_COMPASS),
+    name: "罗盘",
     era: eEra.ERA_MEDIEVAL,
     cost: 375,
     preTechList: [eTechnology.TECH_OPTICS],
   },
   {
     id: eTechnology.TECH_EDUCATION,
-    name: techEnum2String(eTechnology.TECH_EDUCATION),
+    name: "教育",
     era: eEra.ERA_MEDIEVAL,
     cost: 485,
     preTechList: [eTechnology.TECH_THEOLOGY, eTechnology.TECH_CIVIL_SERVICE],
   },
   {
     id: eTechnology.TECH_CHIVALRY,
-    name: techEnum2String(eTechnology.TECH_CHIVALRY),
+    name: "骑士",
     era: eEra.ERA_MEDIEVAL,
     cost: 485,
     preTechList: [eTechnology.TECH_GUILDS, eTechnology.TECH_CIVIL_SERVICE],
   },
   {
     id: eTechnology.TECH_MACHINERY,
-    name: techEnum2String(eTechnology.TECH_MACHINERY),
+    name: "机械",
     era: eEra.ERA_MEDIEVAL,
     cost: 485,
     preTechList: [eTechnology.TECH_GUILDS, eTechnology.TECH_ENGINEERING],
   },
   {
     id: eTechnology.TECH_PHYSICS,
-    name: techEnum2String(eTechnology.TECH_PHYSICS),
+    name: "物理学",
     era: eEra.ERA_MEDIEVAL,
     cost: 485,
     preTechList: [eTechnology.TECH_METAL_CASTING],
   },
   {
     id: eTechnology.TECH_STEEL,
-    name: techEnum2String(eTechnology.TECH_STEEL),
+    name: "炼钢",
     era: eEra.ERA_MEDIEVAL,
     cost: 485,
     preTechList: [eTechnology.TECH_METAL_CASTING],
@@ -596,28 +343,28 @@ export const technologiesArray = [
   /*renaissance*/
   {
     id: eTechnology.TECH_ASTRONOMY,
-    name: techEnum2String(eTechnology.TECH_ASTRONOMY),
+    name: "天文学",
     era: eEra.ERA_RENAISSANCE,
     cost: 780,
     preTechList: [eTechnology.TECH_COMPASS, eTechnology.TECH_EDUCATION],
   },
   {
     id: eTechnology.TECH_ACOUSTICS,
-    name: techEnum2String(eTechnology.TECH_ACOUSTICS),
+    name: "声学",
     era: eEra.ERA_RENAISSANCE,
     cost: 780,
     preTechList: [eTechnology.TECH_EDUCATION],
   },
   {
     id: eTechnology.TECH_BANKING,
-    name: techEnum2String(eTechnology.TECH_BANKING),
+    name: "银行",
     era: eEra.ERA_RENAISSANCE,
     cost: 780,
     preTechList: [eTechnology.TECH_EDUCATION, eTechnology.TECH_CHIVALRY],
   },
   {
     id: eTechnology.TECH_PRINTING_PRESS,
-    name: techEnum2String(eTechnology.TECH_PRINTING_PRESS),
+    name: "印刷",
     era: eEra.ERA_RENAISSANCE,
     cost: 780,
     preTechList: [
@@ -628,42 +375,42 @@ export const technologiesArray = [
   },
   {
     id: eTechnology.TECH_GUNPOWDER,
-    name: techEnum2String(eTechnology.TECH_GUNPOWDER),
+    name: "火药",
     era: eEra.ERA_RENAISSANCE,
     cost: 780,
     preTechList: [eTechnology.TECH_PHYSICS, eTechnology.TECH_STEEL],
   },
   {
     id: eTechnology.TECH_NAVIGATION,
-    name: techEnum2String(eTechnology.TECH_NAVIGATION),
+    name: "导航",
     era: eEra.ERA_RENAISSANCE,
     cost: 1150,
     preTechList: [eTechnology.TECH_ASTRONOMY],
   },
   {
     id: eTechnology.TECH_ARCHITECTURE,
-    name: techEnum2String(eTechnology.TECH_ARCHITECTURE),
+    name: "建筑学",
     era: eEra.ERA_RENAISSANCE,
     cost: 1150,
     preTechList: [eTechnology.TECH_ACOUSTICS, eTechnology.TECH_BANKING],
   },
   {
     id: eTechnology.TECH_ECONOMICS,
-    name: techEnum2String(eTechnology.TECH_ECONOMICS),
+    name: "经济学",
     era: eEra.ERA_RENAISSANCE,
     cost: 1150,
     preTechList: [eTechnology.TECH_PRINTING_PRESS, eTechnology.TECH_BANKING],
   },
   {
     id: eTechnology.TECH_METALLURGY,
-    name: techEnum2String(eTechnology.TECH_METALLURGY),
+    name: "冶金",
     era: eEra.ERA_RENAISSANCE,
     cost: 1150,
     preTechList: [eTechnology.TECH_PRINTING_PRESS, eTechnology.TECH_GUNPOWDER],
   },
   {
     id: eTechnology.TECH_CHEMISTRY,
-    name: techEnum2String(eTechnology.TECH_CHEMISTRY),
+    name: "化学",
     era: eEra.ERA_RENAISSANCE,
     cost: 1150,
     preTechList: [eTechnology.TECH_GUNPOWDER],
@@ -672,49 +419,49 @@ export const technologiesArray = [
   /*industrial*/
   {
     id: eTechnology.TECH_ARCHAEOLOGY,
-    name: techEnum2String(eTechnology.TECH_ARCHAEOLOGY),
+    name: "考古学",
     era: eEra.ERA_INDUSTRIAL,
     cost: 1600,
     preTechList: [eTechnology.TECH_NAVIGATION, eTechnology.TECH_ARCHITECTURE],
   },
   {
     id: eTechnology.TECH_SCIENTIFIC_THEORY,
-    name: techEnum2String(eTechnology.TECH_SCIENTIFIC_THEORY),
+    name: "科学理论",
     era: eEra.ERA_INDUSTRIAL,
     cost: 1600,
     preTechList: [eTechnology.TECH_ARCHITECTURE, eTechnology.TECH_ECONOMICS],
   },
   {
     id: eTechnology.TECH_INDUSTRIALIZATION,
-    name: techEnum2String(eTechnology.TECH_INDUSTRIALIZATION),
+    name: "工业化",
     era: eEra.ERA_INDUSTRIAL,
     cost: 1600,
     preTechList: [eTechnology.TECH_ECONOMICS],
   },
   {
     id: eTechnology.TECH_RIFLING,
-    name: techEnum2String(eTechnology.TECH_RIFLING),
+    name: "膛线",
     era: eEra.ERA_INDUSTRIAL,
     cost: 1600,
     preTechList: [eTechnology.TECH_ECONOMICS, eTechnology.TECH_METALLURGY],
   },
   {
     id: eTechnology.TECH_MILITARY_SCIENCE,
-    name: techEnum2String(eTechnology.TECH_MILITARY_SCIENCE),
+    name: "军事科学",
     era: eEra.ERA_INDUSTRIAL,
     cost: 1600,
     preTechList: [eTechnology.TECH_CHEMISTRY, eTechnology.TECH_METALLURGY],
   },
   {
     id: eTechnology.TECH_FERTILIZER,
-    name: techEnum2String(eTechnology.TECH_FERTILIZER),
+    name: "化肥",
     era: eEra.ERA_INDUSTRIAL,
     cost: 1600,
     preTechList: [eTechnology.TECH_CHEMISTRY],
   },
   {
     id: eTechnology.TECH_BIOLOGY,
-    name: techEnum2String(eTechnology.TECH_BIOLOGY),
+    name: "生物学",
     era: eEra.ERA_INDUSTRIAL,
     cost: 2350,
     preTechList: [
@@ -724,14 +471,14 @@ export const technologiesArray = [
   },
   {
     id: eTechnology.TECH_ELECTRICITY,
-    name: techEnum2String(eTechnology.TECH_ELECTRICITY),
+    name: "电力",
     era: eEra.ERA_INDUSTRIAL,
     cost: 2350,
     preTechList: [eTechnology.TECH_SCIENTIFIC_THEORY],
   },
   {
     id: eTechnology.TECH_STEAM_POWER,
-    name: techEnum2String(eTechnology.TECH_STEAM_POWER),
+    name: "蒸汽动力",
     era: eEra.ERA_INDUSTRIAL,
     cost: 2350,
     preTechList: [
@@ -742,7 +489,7 @@ export const technologiesArray = [
   },
   {
     id: eTechnology.TECH_DYNAMITE,
-    name: techEnum2String(eTechnology.TECH_DYNAMITE),
+    name: "炸药",
     era: eEra.ERA_INDUSTRIAL,
     cost: 2350,
     preTechList: [
@@ -754,63 +501,63 @@ export const technologiesArray = [
   /*modern*/
   {
     id: eTechnology.TECH_REFRIGERATION,
-    name: techEnum2String(eTechnology.TECH_REFRIGERATION),
+    name: "制冷",
     era: eEra.ERA_MODERN,
     cost: 3100,
     preTechList: [eTechnology.TECH_BIOLOGY, eTechnology.TECH_ELECTRICITY],
   },
   {
     id: eTechnology.TECH_RADIO,
-    name: techEnum2String(eTechnology.TECH_RADIO),
+    name: "无线电",
     era: eEra.ERA_MODERN,
     cost: 3100,
     preTechList: [eTechnology.TECH_ELECTRICITY],
   },
   {
     id: eTechnology.TECH_REPLACEABLE_PARTS,
-    name: techEnum2String(eTechnology.TECH_REPLACEABLE_PARTS),
+    name: "零组件",
     era: eEra.ERA_MODERN,
     cost: 3100,
     preTechList: [eTechnology.TECH_ELECTRICITY, eTechnology.TECH_STEAM_POWER],
   },
   {
     id: eTechnology.TECH_FLIGHT,
-    name: techEnum2String(eTechnology.TECH_FLIGHT),
+    name: "航空",
     era: eEra.ERA_MODERN,
     cost: 3100,
     preTechList: [eTechnology.TECH_STEAM_POWER],
   },
   {
     id: eTechnology.TECH_RAILROAD,
-    name: techEnum2String(eTechnology.TECH_RAILROAD),
+    name: "铁路",
     era: eEra.ERA_MODERN,
     cost: 3100,
     preTechList: [eTechnology.TECH_STEAM_POWER, eTechnology.TECH_DYNAMITE],
   },
   {
     id: eTechnology.TECH_PLASTIC,
-    name: techEnum2String(eTechnology.TECH_PLASTIC),
+    name: "塑料",
     era: eEra.ERA_MODERN,
     cost: 4100,
     preTechList: [eTechnology.TECH_RADIO, eTechnology.TECH_REPLACEABLE_PARTS],
   },
   {
     id: eTechnology.TECH_ELECTRONICS,
-    name: techEnum2String(eTechnology.TECH_ELECTRONICS),
+    name: "电子学",
     era: eEra.ERA_MODERN,
     cost: 4100,
     preTechList: [eTechnology.TECH_FLIGHT, eTechnology.TECH_REPLACEABLE_PARTS],
   },
   {
     id: eTechnology.TECH_BALLISTICS,
-    name: techEnum2String(eTechnology.TECH_BALLISTICS),
+    name: "弹道学",
     era: eEra.ERA_MODERN,
     cost: 4100,
     preTechList: [eTechnology.TECH_FLIGHT, eTechnology.TECH_RAILROAD],
   },
   {
     id: eTechnology.TECH_COMBUSTION,
-    name: techEnum2String(eTechnology.TECH_COMBUSTION),
+    name: "内燃机",
     era: eEra.ERA_MODERN,
     cost: 4100,
     preTechList: [eTechnology.TECH_RAILROAD],
@@ -819,56 +566,56 @@ export const technologiesArray = [
   /*atomic*/
   {
     id: eTechnology.TECH_PENICILIN,
-    name: techEnum2String(eTechnology.TECH_PENICILIN),
+    name: "青霉素",
     era: eEra.ERA_ATOMIC,
     cost: 5100,
     preTechList: [eTechnology.TECH_PLASTIC, eTechnology.TECH_REFRIGERATION],
   },
   {
     id: eTechnology.TECH_ATOMIC_THEORY,
-    name: techEnum2String(eTechnology.TECH_ATOMIC_THEORY),
+    name: "原子理论",
     era: eEra.ERA_ATOMIC,
     cost: 5100,
     preTechList: [eTechnology.TECH_PLASTIC, eTechnology.TECH_ELECTRONICS],
   },
   {
     id: eTechnology.TECH_RADAR,
-    name: techEnum2String(eTechnology.TECH_RADAR),
+    name: "雷达",
     era: eEra.ERA_ATOMIC,
     cost: 5100,
     preTechList: [eTechnology.TECH_BALLISTICS, eTechnology.TECH_ELECTRONICS],
   },
   {
     id: eTechnology.TECH_COMBINED_ARMS,
-    name: techEnum2String(eTechnology.TECH_COMBINED_ARMS),
+    name: "联合兵种",
     era: eEra.ERA_ATOMIC,
     cost: 5100,
     preTechList: [eTechnology.TECH_BALLISTICS, eTechnology.TECH_COMBUSTION],
   },
   {
     id: eTechnology.TECH_ECOLOGY,
-    name: techEnum2String(eTechnology.TECH_ECOLOGY),
+    name: "生态学",
     era: eEra.ERA_ATOMIC,
     cost: 6400,
     preTechList: [eTechnology.TECH_PENICILIN, eTechnology.TECH_ATOMIC_THEORY],
   },
   {
     id: eTechnology.TECH_NUCLEAR_FISSION,
-    name: techEnum2String(eTechnology.TECH_NUCLEAR_FISSION),
+    name: "核裂变",
     era: eEra.ERA_ATOMIC,
     cost: 6400,
     preTechList: [eTechnology.TECH_RADAR, eTechnology.TECH_ATOMIC_THEORY],
   },
   {
     id: eTechnology.TECH_ROCKETRY,
-    name: techEnum2String(eTechnology.TECH_ROCKETRY),
+    name: "火箭学",
     era: eEra.ERA_ATOMIC,
     cost: 6400,
     preTechList: [eTechnology.TECH_RADAR, eTechnology.TECH_ATOMIC_THEORY],
   },
   {
     id: eTechnology.TECH_COMPUTERS,
-    name: techEnum2String(eTechnology.TECH_COMPUTERS),
+    name: "计算机",
     era: eEra.ERA_ATOMIC,
     cost: 6400,
     preTechList: [eTechnology.TECH_RADAR, eTechnology.TECH_COMBINED_ARMS],
@@ -877,63 +624,63 @@ export const technologiesArray = [
   /*infomation*/
   {
     id: eTechnology.TECH_TELECOM,
-    name: techEnum2String(eTechnology.TECH_TELECOM),
+    name: "电信科技",
     era: eEra.ERA_INFOMATION,
     cost: 7700,
     preTechList: [eTechnology.TECH_ECOLOGY],
   },
   {
     id: eTechnology.TECH_MOBILE_TACTICS,
-    name: techEnum2String(eTechnology.TECH_MOBILE_TACTICS),
+    name: "机动战术",
     era: eEra.ERA_INFOMATION,
     cost: 7700,
     preTechList: [eTechnology.TECH_ECOLOGY, eTechnology.TECH_NUCLEAR_FISSION],
   },
   {
     id: eTechnology.TECH_ADVANCED_BALLISTICS,
-    name: techEnum2String(eTechnology.TECH_ADVANCED_BALLISTICS),
+    name: "高级弹道学",
     era: eEra.ERA_INFOMATION,
     cost: 7700,
     preTechList: [eTechnology.TECH_ROCKETRY, eTechnology.TECH_NUCLEAR_FISSION],
   },
   {
     id: eTechnology.TECH_SATELLITES,
-    name: techEnum2String(eTechnology.TECH_SATELLITES),
+    name: "卫星",
     era: eEra.ERA_INFOMATION,
     cost: 7700,
     preTechList: [eTechnology.TECH_ROCKETRY],
   },
   {
     id: eTechnology.TECH_ROBOTICS,
-    name: techEnum2String(eTechnology.TECH_ROBOTICS),
+    name: "机器人学",
     era: eEra.ERA_INFOMATION,
     cost: 7700,
     preTechList: [eTechnology.TECH_ROCKETRY, eTechnology.TECH_COMPUTERS],
   },
   {
     id: eTechnology.TECH_LASERS,
-    name: techEnum2String(eTechnology.TECH_LASERS),
+    name: "镭射",
     era: eEra.ERA_INFOMATION,
     cost: 7700,
     preTechList: [eTechnology.TECH_COMPUTERS],
   },
   {
     id: eTechnology.TECH_INTERNET,
-    name: techEnum2String(eTechnology.TECH_INTERNET),
+    name: "网络",
     era: eEra.ERA_INFOMATION,
     cost: 8800,
     preTechList: [eTechnology.TECH_TELECOM],
   },
   {
     id: eTechnology.TECH_GLOBALIZATION,
-    name: techEnum2String(eTechnology.TECH_GLOBALIZATION),
+    name: "全球化",
     era: eEra.ERA_INFOMATION,
     cost: 8800,
     preTechList: [eTechnology.TECH_TELECOM],
   },
   {
     id: eTechnology.TECH_PARTICLE_PHYSICS,
-    name: techEnum2String(eTechnology.TECH_PARTICLE_PHYSICS),
+    name: "粒子物理学",
     era: eEra.ERA_INFOMATION,
     cost: 8800,
     preTechList: [
@@ -944,7 +691,7 @@ export const technologiesArray = [
   },
   {
     id: eTechnology.TECH_NUCLEAR_FUSION,
-    name: techEnum2String(eTechnology.TECH_NUCLEAR_FUSION),
+    name: "核聚变",
     era: eEra.ERA_INFOMATION,
     cost: 8800,
     preTechList: [
@@ -955,14 +702,14 @@ export const technologiesArray = [
   },
   {
     id: eTechnology.TECH_NANOTECHNOLOGY,
-    name: techEnum2String(eTechnology.TECH_NANOTECHNOLOGY),
+    name: "纳米科技",
     era: eEra.ERA_INFOMATION,
     cost: 8800,
     preTechList: [eTechnology.TECH_ROBOTICS],
   },
   {
     id: eTechnology.TECH_STEALTH,
-    name: techEnum2String(eTechnology.TECH_STEALTH),
+    name: "隐形技术",
     era: eEra.ERA_INFOMATION,
     cost: 8800,
     preTechList: [eTechnology.TECH_ROBOTICS, eTechnology.TECH_LASERS],
@@ -971,7 +718,7 @@ export const technologiesArray = [
   /*future*/
   {
     id: eTechnology.TECH_FUTURE_TECH,
-    name: techEnum2String(eTechnology.TECH_FUTURE_TECH),
+    name: "未来科技",
     era: eEra.ERA_FUTURE,
     cost: 9500,
     preTechList: [
