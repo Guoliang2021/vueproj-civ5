@@ -1,4 +1,5 @@
 export enum eTerrainType {
+  TERRAIN_ALL,
   TERRAIN_PLAINS,
   TERRAIN_HILLS,
   TERRAIN_FOREST,
@@ -17,6 +18,13 @@ export function terrainEnum2Info(terrain: number) {
     modify: number;
   };
   switch (terrain) {
+    case eTerrainType.TERRAIN_ALL:
+      retVal = {
+        name: "不限",
+        modify: 0,
+        rugged: false,
+      };
+      break;
     case eTerrainType.TERRAIN_PLAINS:
       retVal = {
         name: "平地",
