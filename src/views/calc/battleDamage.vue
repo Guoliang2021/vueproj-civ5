@@ -37,6 +37,9 @@
           />
         </div>
         <div>
+          <EPromotionBox :unitID="attackModel.unitId"></EPromotionBox>
+        </div>
+        <div>
           战斗力:{{ attackModel.calcAttackValue }}/{{
             attackModel.modifiedAttackValue
           }}
@@ -97,6 +100,7 @@ import { battleUnitArray } from "@/staticData/units";
 import ETerrainPicker from "@/components/ETerrainPicker.vue";
 import { terrainEnum2Info } from "@/staticData/terrain";
 import { eUnitType } from "@/staticData/units";
+import EPromotionBox from "@/components/EPromotionBox.vue";
 @Options({
   data() {
     return {
@@ -107,6 +111,7 @@ import { eUnitType } from "@/staticData/units";
   components: {
     EUnitPicker,
     ETerrainPicker,
+    EPromotionBox,
   },
 })
 export default class BattleDamage extends Vue {

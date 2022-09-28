@@ -17,7 +17,7 @@
   </div>
   <div>
     <el-checkbox-group
-      v-model="checkboxGroup1"
+      v-model="checkboxGroup"
       v-if="listVisible"
       @change="onCheckGroupChange"
     >
@@ -35,10 +35,15 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-@Options({})
+@Options({
+  props: {
+    unitID: Number,
+  },
+})
 export default class EPromotionBox extends Vue {
-  checkboxGroup1 = [];
+  checkboxGroup = [];
   listVisible = false;
+  unitID!: number;
   cities = [
     {
       name: "shanghai",
@@ -59,6 +64,7 @@ export default class EPromotionBox extends Vue {
   ];
   onSwitchClick() {
     this.listVisible = !this.listVisible;
+    console.log(this.unitID);
   }
   onCheckGroupChange(value: []) {
     console.log(value);
