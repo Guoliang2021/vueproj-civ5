@@ -4,15 +4,11 @@
       <el-col :span="5">
         <span @click="onSwitchClick">加成选项</span>
       </el-col>
-      <el-col :span="2">
-        <img class="promotion-img" src="@/assets/icons/PROMOTION_59.png" />
-      </el-col>
-      <el-col :span="2">
-        <img class="promotion-img" src="@/assets/icons/PROMOTION_59.png" />
-      </el-col>
-      <el-col :span="2">
-        <img class="promotion-img" src="@/assets/icons/PROMOTION_59.png" />
-      </el-col>
+      <li v-for="item in checkedList" :key="item.value">
+        <el-col :span="2">
+          <img class="promotion-img" :src="item.src" />
+        </el-col>
+      </li>
     </el-row>
   </div>
   <div>
@@ -38,7 +34,7 @@
 import { Options, Vue } from "vue-class-component";
 import { promotionArray } from "@/staticData/promotions";
 import { battleUnitArray } from "@/staticData/units";
-import { EPromotionBoxOption } from "@/types/commonType";
+import { EPromotionBoxOption, EPromotionBoxImgList } from "@/types/commonType";
 import { eScene, eUnitType } from "@/staticData/enums";
 @Options({
   props: {
@@ -57,13 +53,31 @@ export default class EPromotionBox extends Vue {
   unitID!: number;
   attack!: boolean;
   optionBoxes!: EPromotionBoxOption[];
+  checkedList!: EPromotionBoxImgList[];
   onSwitchClick() {
     this.listVisible = !this.listVisible;
   }
   onCheckGroupChange(value: []) {
-    console.log(value);
+    const items = [];
+    for (let i = 0; i < value.length; i++) {
+      for (let j = 0; j < this.optionBoxes.length; j++) {
+        if (value.at(i) === this.optionBoxes[j].label) {
+          let item: EPromotionBoxImgList = {
+            value: this.optionBoxes[j].value,
+            src: require("../assets/icons/" +
+              promotionArray[this.optionBoxes[j].value].iconName),
+          };
+          items.push(item);
+          break;
+        }
+      }
+    }
+    this.checkedList = items;
+    console.log(this.checkedList);
   }
   initOptions(unitId: number) {
+    this.listVisible = false;
+    this.checkboxGroup = [];
     let currentUnit = battleUnitArray[unitId];
     const options = [];
     for (let i = 0; i < promotionArray.length; i++) {
