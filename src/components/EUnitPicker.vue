@@ -16,13 +16,14 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { ECascaderOption, UnitModel } from "@/types/commonType";
+import { battleUnitArray } from "@/staticData/units";
 import {
-  battleUnitArray,
+  eEra,
+  eraEnum2String,
   eUnit,
   eUnitType,
   unitTypeEnum2String,
-} from "@/staticData/units";
-import { eEra, eraEnum2String } from "@/staticData/era";
+} from "@/staticData/enums";
 @Options({})
 export default class EUnitPicker extends Vue {
   value = [];

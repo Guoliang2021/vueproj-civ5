@@ -1,17 +1,10 @@
 import { PromotionModel } from "@/types/commonType";
-import { eUnitType } from "@/staticData/units";
-import { eTerrainType } from "@/staticData/terrain";
-export enum eScene {
-  SCENE_ALL = 0,
-  SCENE_ATK,
-  SCENE_DEF,
-}
-
-export enum ePromotion {
-  PROMOTION_GREAT_GENENAL = 0,
-  PROMOTION_HONOR,
-  PROMOTION_HONOR_DISCIPLINE,
-}
+import {
+  ePromotion,
+  eScene,
+  eTerrainType,
+  eUnitType,
+} from "@/staticData/enums";
 
 export const promotionArray: Array<PromotionModel> = [
   {

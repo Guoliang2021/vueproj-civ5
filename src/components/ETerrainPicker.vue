@@ -19,7 +19,8 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { ETerrainPickerOption } from "@/types/commonType";
-import { eTerrainType, terrainEnum2Info } from "@/staticData/terrain";
+import { eTerrainType, terrainEnum2Info } from "@/staticData/enums";
+
 @Options({
   props: {
     disabled: Boolean,

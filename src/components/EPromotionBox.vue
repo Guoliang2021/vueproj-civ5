@@ -25,6 +25,8 @@
         v-for="option in optionBoxes"
         :key="option.value"
         :label="option.label"
+        :checked="option.checked"
+        :disabled="option.disabled"
       >
         {{ option.label }}
       </el-checkbox>
@@ -34,9 +36,10 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { eScene, promotionArray } from "@/staticData/promotions";
-import { eUnitType, battleUnitArray } from "@/staticData/units";
+import { promotionArray } from "@/staticData/promotions";
+import { battleUnitArray } from "@/staticData/units";
 import { EPromotionBoxOption } from "@/types/commonType";
+import { eScene, eUnitType } from "@/staticData/enums";
 @Options({
   props: {
     unitID: Number,
@@ -61,11 +64,12 @@ export default class EPromotionBox extends Vue {
     console.log(value);
   }
   initOptions(unitId: number) {
-    console.log(unitId);
     let currentUnit = battleUnitArray[unitId];
     const options = [];
     for (let i = 0; i < promotionArray.length; i++) {
       let promotion = promotionArray[i];
+      let checked = false;
+      let disabled = false;
       //   过滤单位类型
       if (
         promotion.selfUnitType != eUnitType.UNIT_TYPE_ALL &&
@@ -79,11 +83,19 @@ export default class EPromotionBox extends Vue {
         if (!this.attack && promotion.scene == eScene.SCENE_ATK) continue;
       }
 
+      // 单位固有
+      for (let j = 0; j < currentUnit.originPromotion.length; j++) {
+        if (promotion.id == currentUnit.originPromotion[j]) {
+          checked = true;
+          disabled = true;
+          break;
+        }
+      }
       let opt: EPromotionBoxOption = {
         value: promotion.id,
         label: promotion.name,
-        checked: false,
-        disabled: false,
+        checked: checked,
+        disabled: disabled,
       };
       options.push(opt);
     }

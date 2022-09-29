@@ -101,9 +101,8 @@ import EUnitPicker from "@/components/EUnitPicker.vue";
 import { BattleDamageCalModel } from "@/types/commonType";
 import { battleUnitArray } from "@/staticData/units";
 import ETerrainPicker from "@/components/ETerrainPicker.vue";
-import { terrainEnum2Info } from "@/staticData/terrain";
-import { eUnitType } from "@/staticData/units";
 import EPromotionBox from "@/components/EPromotionBox.vue";
+import { eUnitType, terrainEnum2Info } from "@/staticData/enums";
 @Options({
   data() {
     return {

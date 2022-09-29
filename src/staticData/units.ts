@@ -1,189 +1,15 @@
-import { eEra } from "./era";
-import { eNationality } from "./nation";
-import { eTechnology } from "./technology";
-import { UnitModel } from "../types/commonType";
-
-export enum eUnitType {
-  UNIT_TYPE_ALL = 0,
-  UNIT_TYPE_DETECT /*侦查*/,
-  UNIT_TYPE_CLOSECOMBAT /*肉搏*/,
-  UNIT_TYPE_REMOTE /*弓箭*/,
-  UNIT_TYPE_WEAPON /*火器*/,
-  UNIT_TYPE_SIEGE /*攻城*/,
-  UNIT_TYPE_RIDING /*骑乘*/,
-  UNIT_TYPE_SEACLOSECOMBAT /*海上近战*/,
-  UNIT_TYPE_SEAREMOTE /*海上远程*/,
-  UNIT_TYPE_CITY /*城市*/,
-  UNIT_TYPE_MAX,
-}
-
-export function unitTypeEnum2String(unitType: number) {
-  let retVal!: string;
-  switch (unitType) {
-    case eUnitType.UNIT_TYPE_ALL:
-      retVal = "全部";
-      break;
-    case eUnitType.UNIT_TYPE_DETECT:
-      retVal = "侦查";
-      break;
-    case eUnitType.UNIT_TYPE_CLOSECOMBAT:
-      retVal = "肉搏";
-      break;
-    case eUnitType.UNIT_TYPE_REMOTE:
-      retVal = "弓箭";
-      break;
-    case eUnitType.UNIT_TYPE_WEAPON:
-      retVal = "火器";
-      break;
-    case eUnitType.UNIT_TYPE_SIEGE:
-      retVal = "攻城";
-      break;
-    case eUnitType.UNIT_TYPE_RIDING:
-      retVal = "骑乘";
-      break;
-    case eUnitType.UNIT_TYPE_SEACLOSECOMBAT:
-      retVal = "海上近战";
-      break;
-    case eUnitType.UNIT_TYPE_SEAREMOTE:
-      retVal = "海上远程";
-      break;
-    case eUnitType.UNIT_TYPE_CITY:
-      retVal = "城市";
-      break;
-    default:
-      retVal = "未定义";
-      break;
-  }
-  return retVal;
-}
-
-export enum eUnitResource {
-  UNIT_RESOURCE_NONE,
-  UNIT_RESOURCE_HORSE,
-  UNIT_RESOURCE_IRON,
-  UNIT_RESOURCE_COAL,
-  UNIT_RESOURCE_ALUMINUM,
-  UNIT_RESOURCE_PETROLEUM,
-  UNIT_RESOURCE_URANIUM,
-}
-export function unitResourceEnum2String(unitResource: number) {
-  let retVal!: string;
-  switch (unitResource) {
-    case eUnitResource.UNIT_RESOURCE_NONE:
-      retVal = "无";
-      break;
-    case eUnitResource.UNIT_RESOURCE_HORSE:
-      retVal = "马";
-      break;
-    case eUnitResource.UNIT_RESOURCE_IRON:
-      retVal = "铁";
-      break;
-    case eUnitResource.UNIT_RESOURCE_COAL:
-      retVal = "煤";
-      break;
-    case eUnitResource.UNIT_RESOURCE_ALUMINUM:
-      retVal = "铝";
-      break;
-    case eUnitResource.UNIT_RESOURCE_PETROLEUM:
-      retVal = "油";
-      break;
-    case eUnitResource.UNIT_RESOURCE_URANIUM:
-      retVal = "铀";
-      break;
-    default:
-      retVal = "未定义";
-      break;
-  }
-  return retVal;
-}
-
-export enum eUnit {
-  UNIT_NONE = -1,
-  UNIT_CITY,
-  UNIT_SCOUT,
-  UNIT_SHOSHONE_PATHFINDER,
-  UNIT_GALLEY,
-  UNIT_TRIREME,
-  UNIT_CARTHAGINIAN_QUINQUEREME,
-  UNIT_BYZANTINE_DROMON,
-  UNIT_CHARIOT_ARCHER,
-  UNIT_INDIAN_WARELEPHANT,
-  UNIT_EGYPTIAN_WARCHARIOT,
-  UNIT_BARBARIAN_AXMAN,
-  UNIT_HUN_HORSE_ARCHER,
-  UNIT_ARCHER,
-  UNIT_BABYLONIAN_BOWMAN,
-  UNIT_MAYAN_ATLATLIST,
-  UNIT_INCAN_SLINGER,
-  UNIT_SPEARMAN,
-  UNIT_CELT_PICTISH_WARRIOR,
-  UNIT_MAX, //TODO:
-  UNIT_GREEK_HOPLITE,
-  UNIT_PERSIAN_IMMORTAL,
-  UNIT_HUN_BATTERING_RAM,
-  UNIT_WARRIOR,
-  UNIT_AZTEC_JAGUAR,
-  UNIT_POLYNESIAN_MAORI_WARRIOR,
-  UNIT_CATAPULT,
-  UNIT_ROMAN_BALLISTA,
-  UNIT_ASSYRIAN_SIEGE_TOWER,
-  UNIT_SWORDSMAN,
-  UNIT_ROMAN_LEGION,
-  UNIT_IROQUOIAN_MOHAWKWARRIOR,
-  UNIT_KRIS_SWORDSMAN,
-  UNIT_HORSEMAN,
-  UNIT_GREEK_COMPANIONCAVALRY,
-  UNIT_CARTHAGINIAN_FOREST_ELEPHANT,
-  UNIT_BYZANTINE_CATAPHRACT,
-  UNIT_COMPOSITE_BOWMAN,
-  UNIT_GALLEASS,
-  UNIT_VENETIAN_GALLEASS,
-  UNIT_TREBUCHET,
-  UNIT_KOREAN_HWACHA,
-  UNIT_GERMAN_LANDSKNECHT,
-  UNIT_LONGSWORDSMAN,
-  UNIT_DANISH_BERSERKER,
-  UNIT_JAPANESE_SAMURAI,
-  UNIT_KNIGHT,
-  UNIT_MONGOLIAN_KESHIK,
-  UNIT_SPANISH_CONQUISTADOR,
-  UNIT_SIAMESE_WARELEPHANT,
-  UNIT_SONGHAI_MUSLIMCAVALRY,
-  UNIT_ARABIAN_CAMELARCHER,
-  UNIT_CROSSBOWMAN,
-  UNIT_ENGLISH_LONGBOWMAN,
-  UNIT_CHINESE_CHUKONU,
-  UNIT_PIKEMAN,
-  UNIT_ZULU_IMPI,
-  UNIT_MUSKETMAN,
-  UNIT_SPANISH_TERCIO,
-  UNIT_FRENCH_MUSKETEER,
-  UNIT_AMERICAN_MINUTEMAN,
-}
+import { UnitModel } from "@/types/commonType";
+import {
+  eEra,
+  eNationality,
+  eTechnology,
+  ePromotion,
+  eUnitType,
+  eUnit,
+  eUnitResource,
+} from "@/staticData/enums";
 
 export const battleUnitArray: Array<UnitModel> = [
-  /*eg
-   {
-      id: 单位ID,取eUnit枚举值
-      name: 单位名称
-      era: 单位所在时代,取eEra枚举值
-      type: 单位类型,取eUnitType枚举值
-      nationality: 单位国籍,eNationality枚举值
-      substitution: 如果是uu,则指明替代单位,取eUnitType枚举值
-      promote: 晋升单位,取eUnit枚举值
-      cost: 单位所需产能
-      closeCombat: 单位攻击类型 true:近战 false:远程
-      attackRange: 单位攻击范围
-      attackValue: 单位战斗力
-      rangeAttackValue: 单位远程战斗力
-      TerrainDefense: 享受复杂地形防御加成 true:享受 false:不享受
-      movement: 单位移动力
-      resource: 单位战略资源需要,取eUnitResource枚举值
-      startTechnology: 单位需要科技
-      endTechnology: 单位过期科技
-      iconSrc: 单位图标路径
-   }
-   */
   {
     id: eUnit.UNIT_CITY,
     name: "城市",
@@ -198,6 +24,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 0,
     rangeAttackValue: 0,
     terrainDefense: false,
+    originPromotion: [],
     movement: 0,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,
@@ -218,6 +45,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 5,
     rangeAttackValue: 5,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,
@@ -238,6 +66,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 8,
     rangeAttackValue: 8,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,
@@ -258,6 +87,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 7,
     rangeAttackValue: 7,
     terrainDefense: true,
+    originPromotion: [],
     movement: 3,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,
@@ -278,6 +108,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 10,
     rangeAttackValue: 10,
     terrainDefense: true,
+    originPromotion: [],
     movement: 4,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_SAILING,
@@ -298,6 +129,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 13,
     rangeAttackValue: 13,
     terrainDefense: true,
+    originPromotion: [],
     movement: 4,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_SAILING,
@@ -318,6 +150,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 8,
     rangeAttackValue: 10,
     terrainDefense: true,
+    originPromotion: [],
     movement: 4,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_SAILING,
@@ -338,6 +171,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 6,
     rangeAttackValue: 10,
     terrainDefense: false,
+    originPromotion: [],
     movement: 4,
     resource: eUnitResource.UNIT_RESOURCE_HORSE,
     startTechnology: eTechnology.TECH_THE_WHEEL,
@@ -358,6 +192,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 9,
     rangeAttackValue: 11,
     terrainDefense: false,
+    originPromotion: [],
     movement: 3,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_THE_WHEEL,
@@ -378,6 +213,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 6,
     rangeAttackValue: 10,
     terrainDefense: false,
+    originPromotion: [],
     movement: 5,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_THE_WHEEL,
@@ -398,6 +234,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 9,
     rangeAttackValue: 9,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_THE_WHEEL,
@@ -418,6 +255,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 7,
     rangeAttackValue: 10,
     terrainDefense: false,
+    originPromotion: [],
     movement: 4,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_THE_WHEEL,
@@ -438,6 +276,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 5,
     rangeAttackValue: 7,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_ARCHERY,
@@ -458,6 +297,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 7,
     rangeAttackValue: 9,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_ARCHERY,
@@ -478,6 +318,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 5,
     rangeAttackValue: 7,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,
@@ -498,6 +339,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 4,
     rangeAttackValue: 7,
     terrainDefense: true,
+    originPromotion: [ePromotion.PROMOTION_GREAT_GENENAL],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,
@@ -518,6 +360,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 11,
     rangeAttackValue: 11,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_BRONZE_WORKING,
@@ -538,6 +381,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 11,
     rangeAttackValue: 11,
     terrainDefense: true,
+    originPromotion: [],
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_BRONZE_WORKING,
