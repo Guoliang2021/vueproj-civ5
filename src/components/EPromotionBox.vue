@@ -22,12 +22,11 @@
       @change="onCheckGroupChange"
     >
       <el-checkbox
-        v-for="city in cities"
-        :key="city.value"
-        :label="city.name"
-        :value="city.value"
+        v-for="option in optionBoxes"
+        :key="option.value"
+        :label="option.label"
       >
-        {{ city.name }}
+        {{ option.label }}
       </el-checkbox>
     </el-checkbox-group>
   </div>
@@ -35,13 +34,17 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { eScene, promotionArray } from "@/staticData/promotions";
+import { eUnitType, battleUnitArray } from "@/staticData/units";
+import { EPromotionBoxOption } from "@/types/commonType";
 @Options({
   props: {
     unitID: Number,
+    attack: Boolean,
   },
   watch: {
     unitID(newID) {
-      console.log(newID);
+      this.initOptions(newID);
     },
   },
 })
@@ -49,30 +52,42 @@ export default class EPromotionBox extends Vue {
   checkboxGroup = [];
   listVisible = false;
   unitID!: number;
-  cities = [
-    {
-      name: "shanghai",
-      value: 1,
-    },
-    {
-      name: "Beijing",
-      value: 2,
-    },
-    {
-      name: "Guangzhou",
-      value: 3,
-    },
-    {
-      name: "Shenzhen",
-      value: 4,
-    },
-  ];
+  attack!: boolean;
+  optionBoxes!: EPromotionBoxOption[];
   onSwitchClick() {
     this.listVisible = !this.listVisible;
-    console.log(this.unitID);
   }
   onCheckGroupChange(value: []) {
     console.log(value);
+  }
+  initOptions(unitId: number) {
+    console.log(unitId);
+    let currentUnit = battleUnitArray[unitId];
+    const options = [];
+    for (let i = 0; i < promotionArray.length; i++) {
+      let promotion = promotionArray[i];
+      //   过滤单位类型
+      if (
+        promotion.selfUnitType != eUnitType.UNIT_TYPE_ALL &&
+        promotion.selfUnitType != currentUnit.type
+      )
+        continue;
+
+      //   过滤场景
+      if (promotion.scene != eScene.SCENE_ALL) {
+        if (this.attack && promotion.scene == eScene.SCENE_DEF) continue;
+        if (!this.attack && promotion.scene == eScene.SCENE_ATK) continue;
+      }
+
+      let opt: EPromotionBoxOption = {
+        value: promotion.id,
+        label: promotion.name,
+        checked: false,
+        disabled: false,
+      };
+      options.push(opt);
+    }
+    this.optionBoxes = options;
   }
 }
 </script>

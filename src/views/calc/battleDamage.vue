@@ -37,7 +37,10 @@
           />
         </div>
         <div>
-          <EPromotionBox :unitID="attackModel.unitId"></EPromotionBox>
+          <EPromotionBox
+            :unitID="attackModel.unitId"
+            :attack="true"
+          ></EPromotionBox>
         </div>
         <div>
           战斗力:{{ attackModel.calcAttackValue }}/{{
