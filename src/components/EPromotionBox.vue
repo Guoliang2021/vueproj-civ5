@@ -4,17 +4,12 @@
       <el-col :span="5">
         <span @click="onSwitchClick">加成选项</span>
       </el-col>
-      <li v-for="item in checkedList" :key="item.value">
-        <el-col :span="2">
-          <img class="promotion-img" :src="item.src" />
-        </el-col>
-      </li>
     </el-row>
   </div>
   <div>
     <el-checkbox-group
       v-model="checkboxGroup"
-      v-if="listVisible"
+      v-show="listVisible"
       @change="onCheckGroupChange"
     >
       <el-checkbox
@@ -35,7 +30,7 @@ import { Options, Vue } from "vue-class-component";
 import { promotionArray } from "@/staticData/promotions";
 import { battleUnitArray } from "@/staticData/units";
 import { EPromotionBoxOption, EPromotionBoxImgList } from "@/types/commonType";
-import { eScene, eUnitType } from "@/staticData/enums";
+import { eScene, eUnit, eUnitType } from "@/staticData/enums";
 @Options({
   props: {
     unitID: Number,
@@ -53,7 +48,6 @@ export default class EPromotionBox extends Vue {
   unitID!: number;
   attack!: boolean;
   optionBoxes!: EPromotionBoxOption[];
-  checkedList!: EPromotionBoxImgList[];
   onSwitchClick() {
     this.listVisible = !this.listVisible;
   }
@@ -72,8 +66,6 @@ export default class EPromotionBox extends Vue {
         }
       }
     }
-    this.checkedList = items;
-    console.log(this.checkedList);
   }
   initOptions(unitId: number) {
     this.listVisible = false;
@@ -114,6 +106,9 @@ export default class EPromotionBox extends Vue {
       options.push(opt);
     }
     this.optionBoxes = options;
+  }
+  created() {
+    this.initOptions(eUnit.UNIT_SCOUT);
   }
 }
 </script>
