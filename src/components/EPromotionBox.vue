@@ -4,13 +4,13 @@
       <el-col :span="6">
         <span @click="onSwitchClick">晋升</span>
       </el-col>
-      <el-col :span="3" v-for="item in items" :key="item.index">
-        <img
-          class="promotionIcon"
-          :src="item.src"
-          v-show="item.visible"
-          @click="onClicked"
-        />
+      <el-col
+        :span="3"
+        v-for="item in items"
+        :key="item.index"
+        v-show="item.visible"
+      >
+        <img class="promotionIcon" :src="item.src" @click="onClicked" />
       </el-col>
     </el-row>
   </div>
