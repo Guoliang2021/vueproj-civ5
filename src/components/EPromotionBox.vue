@@ -1,8 +1,16 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="5">
-        <span @click="onSwitchClick">加成选项</span>
+      <el-col :span="6">
+        <span @click="onSwitchClick">晋升</span>
+      </el-col>
+      <el-col :span="3" v-for="item in items" :key="item.index">
+        <img
+          class="promotionIcon"
+          :src="item.src"
+          v-show="item.visible"
+          @click="onClicked"
+        />
       </el-col>
     </el-row>
   </div>
@@ -110,11 +118,52 @@ export default class EPromotionBox extends Vue {
   created() {
     this.initOptions(eUnit.UNIT_SCOUT);
   }
+  items = [
+    {
+      src: require("../assets/icons/BUILDING_AIRPORT.png"),
+      index: 1,
+      visible: false,
+    },
+    {
+      src: require("../assets/icons/BUILDING_ARSENAL.png"),
+      index: 2,
+      visible: false,
+    },
+    {
+      src: require("../assets/icons/BUILDING_BANK.png"),
+      index: 3,
+      visible: true,
+    },
+    {
+      src: require("../assets/icons/BUILDING_BANK.png"),
+      index: 4,
+      visible: true,
+    },
+    {
+      src: require("../assets/icons/BUILDING_BANK.png"),
+      index: 5,
+      visible: true,
+    },
+    {
+      src: require("../assets/icons/BUILDING_BANK.png"),
+      index: 6,
+      visible: true,
+    },
+    {
+      src: require("../assets/icons/BUILDING_BANK.png"),
+      index: 7,
+      visible: true,
+    },
+  ];
+  onClicked() {
+    console.log("click");
+    this.items[0].visible = !this.items[0].visible;
+  }
 }
 </script>
 
 <style lang="scss">
-.promotion-img {
+.promotionIcon {
   width: 24px;
   height: 24px;
 }
