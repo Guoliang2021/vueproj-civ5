@@ -37,7 +37,7 @@
 import { Options, Vue } from "vue-class-component";
 import { promotionArray } from "@/staticData/promotions";
 import { battleUnitArray } from "@/staticData/units";
-import { EPromotionBoxOption, EPromotionBoxImgList } from "@/types/commonType";
+import { EPromotionBoxOption } from "@/types/commonType";
 import { eScene, eUnit, eUnitType } from "@/staticData/enums";
 @Options({
   props: {
@@ -60,16 +60,17 @@ export default class EPromotionBox extends Vue {
     this.listVisible = !this.listVisible;
   }
   onCheckGroupChange(value: []) {
-    const items = [];
+    //先把optionBoxes全部取消checked
+    for (let i = 0; i < this.optionBoxes.length; i++) {
+      if (this.optionBoxes[i].disabled != true) {
+        this.optionBoxes[i].checked = false;
+      }
+    }
+    //再根据返回结果将手动勾选的option设为checked
     for (let i = 0; i < value.length; i++) {
       for (let j = 0; j < this.optionBoxes.length; j++) {
         if (value.at(i) === this.optionBoxes[j].label) {
-          let item: EPromotionBoxImgList = {
-            value: this.optionBoxes[j].value,
-            src: require("../assets/icons/" +
-              promotionArray[this.optionBoxes[j].value].iconName),
-          };
-          items.push(item);
+          this.optionBoxes[j].checked = true;
           break;
         }
       }
