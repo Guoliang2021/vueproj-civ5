@@ -6,11 +6,11 @@
       </el-col>
       <el-col
         :span="3"
-        v-for="item in items"
-        :key="item.index"
-        v-show="item.visible"
+        v-for="item in optionBoxes"
+        :key="item.value"
+        v-show="item.checked"
       >
-        <img class="promotionIcon" :src="item.src" @click="onClicked" />
+        <img class="promotionIcon" :src="item.src" />
       </el-col>
     </el-row>
   </div>
@@ -39,6 +39,7 @@ import { promotionArray } from "@/staticData/promotions";
 import { battleUnitArray } from "@/staticData/units";
 import { EPromotionBoxOption } from "@/types/commonType";
 import { eScene, eUnit, eUnitType } from "@/staticData/enums";
+import { reactive } from "vue";
 @Options({
   props: {
     unitID: Number,
@@ -51,11 +52,11 @@ import { eScene, eUnit, eUnitType } from "@/staticData/enums";
   },
 })
 export default class EPromotionBox extends Vue {
-  checkboxGroup = [];
+  checkboxGroup: string[] = reactive([]);
   listVisible = false;
   unitID!: number;
   attack!: boolean;
-  optionBoxes!: EPromotionBoxOption[];
+  optionBoxes: EPromotionBoxOption[] = reactive([]);
   onSwitchClick() {
     this.listVisible = !this.listVisible;
   }
@@ -103,6 +104,7 @@ export default class EPromotionBox extends Vue {
         if (promotion.id == currentUnit.originPromotion[j]) {
           checked = true;
           disabled = true;
+          this.checkboxGroup.push(promotion.name);
           break;
         }
       }
@@ -111,6 +113,7 @@ export default class EPromotionBox extends Vue {
         label: promotion.name,
         checked: checked,
         disabled: disabled,
+        src: require("../assets/icons/" + promotion.iconName),
       };
       options.push(opt);
     }
@@ -118,47 +121,6 @@ export default class EPromotionBox extends Vue {
   }
   created() {
     this.initOptions(eUnit.UNIT_SCOUT);
-  }
-  items = [
-    {
-      src: require("../assets/icons/BUILDING_AIRPORT.png"),
-      index: 1,
-      visible: false,
-    },
-    {
-      src: require("../assets/icons/BUILDING_ARSENAL.png"),
-      index: 2,
-      visible: false,
-    },
-    {
-      src: require("../assets/icons/BUILDING_BANK.png"),
-      index: 3,
-      visible: true,
-    },
-    {
-      src: require("../assets/icons/BUILDING_BANK.png"),
-      index: 4,
-      visible: true,
-    },
-    {
-      src: require("../assets/icons/BUILDING_BANK.png"),
-      index: 5,
-      visible: true,
-    },
-    {
-      src: require("../assets/icons/BUILDING_BANK.png"),
-      index: 6,
-      visible: true,
-    },
-    {
-      src: require("../assets/icons/BUILDING_BANK.png"),
-      index: 7,
-      visible: true,
-    },
-  ];
-  onClicked() {
-    console.log("click");
-    this.items[0].visible = !this.items[0].visible;
   }
 }
 </script>

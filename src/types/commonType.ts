@@ -84,9 +84,5 @@ export interface EPromotionBoxOption {
   label: string;
   checked: boolean;
   disabled: boolean;
-}
-
-export interface EPromotionBoxImgList {
-  value: number;
   src: string;
 }
