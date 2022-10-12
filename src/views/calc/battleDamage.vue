@@ -40,6 +40,7 @@
           <EPromotionBox
             :unitID="attackModel.unitId"
             :attack="true"
+            @changed="onAttackPromotionChanged"
           ></EPromotionBox>
         </div>
         <div>
@@ -160,6 +161,9 @@ export default class BattleDamage extends Vue {
   onAttackHappinessChange(happiness: number) {
     this.attackModel.happiness = happiness;
     this.calcBattleDamage();
+  }
+  onAttackPromotionChanged(array: number[]) {
+    console.log(array);
   }
 
   //functions

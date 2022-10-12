@@ -1,35 +1,37 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="6">
-        <span @click="onSwitchClick">晋升</span>
-      </el-col>
-      <el-col
-        :span="3"
-        v-for="item in optionBoxes"
-        :key="item.value"
-        v-show="item.checked"
+    <div>
+      <el-row>
+        <el-col :span="6">
+          <span @click="onSwitchClick">晋升</span>
+        </el-col>
+        <el-col
+          :span="3"
+          v-for="item in optionBoxes"
+          :key="item.value"
+          v-show="item.checked"
+        >
+          <img class="promotionIcon" :src="item.src" />
+        </el-col>
+      </el-row>
+    </div>
+    <div>
+      <el-checkbox-group
+        v-model="checkboxGroup"
+        v-show="listVisible"
+        @change="onCheckGroupChange"
       >
-        <img class="promotionIcon" :src="item.src" />
-      </el-col>
-    </el-row>
-  </div>
-  <div>
-    <el-checkbox-group
-      v-model="checkboxGroup"
-      v-show="listVisible"
-      @change="onCheckGroupChange"
-    >
-      <el-checkbox
-        v-for="option in optionBoxes"
-        :key="option.value"
-        :label="option.label"
-        :checked="option.checked"
-        :disabled="option.disabled"
-      >
-        {{ option.label }}
-      </el-checkbox>
-    </el-checkbox-group>
+        <el-checkbox
+          v-for="option in optionBoxes"
+          :key="option.value"
+          :label="option.label"
+          :checked="option.checked"
+          :disabled="option.disabled"
+        >
+          {{ option.label }}
+        </el-checkbox>
+      </el-checkbox-group>
+    </div>
   </div>
 </template>
 
@@ -68,14 +70,17 @@ export default class EPromotionBox extends Vue {
       }
     }
     //再根据返回结果将手动勾选的option设为checked
+    const selectArray = [];
     for (let i = 0; i < value.length; i++) {
       for (let j = 0; j < this.optionBoxes.length; j++) {
         if (value.at(i) === this.optionBoxes[j].label) {
           this.optionBoxes[j].checked = true;
+          selectArray.push(this.optionBoxes[j].value);
           break;
         }
       }
     }
+    this.$emit("changed", selectArray);
   }
   initOptions(unitId: number) {
     this.listVisible = false;
