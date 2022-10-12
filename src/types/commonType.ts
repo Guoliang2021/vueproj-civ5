@@ -14,6 +14,7 @@ export interface BattleDamageCalModel {
   terrainId: number; //当前所处地形id eTerrainType
   health: number; //当前血量
   happiness: number; //当前红脸
+  promotions: number[]; //加成列表
 
   // calculate params
   calcAttackValue: number; //攻击力取值
@@ -60,7 +61,7 @@ export interface PromotionModel {
   selfUnitType: number; //自身有效单位类型
   selfTerrainType: number; //自身有限地形
   selfModify: number; //自身战斗力修正值
-  targetUnitType: number; //攻击目标有效单位类型
+  targetUnitType: number[]; //攻击目标有效单位类型,可能有多个
   targetTerrainType: number; //攻击目标有限地形
   targetModify: number; //攻击目标战斗力修正值
   barbarainOnly: boolean; //是否只对蛮族生效

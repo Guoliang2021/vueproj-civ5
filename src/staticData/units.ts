@@ -339,7 +339,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 4,
     rangeAttackValue: 7,
     terrainDefense: true,
-    originPromotion: [ePromotion.PROMOTION_GREAT_GENENAL],
+    originPromotion: [ePromotion.PROMOTION_GREAT_GENENAL], //TODO:
     movement: 2,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_AGRICULTURE,

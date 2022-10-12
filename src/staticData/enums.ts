@@ -257,6 +257,8 @@ export enum eTerrainType {
   TERRAIN_MARSH,
   TERRAIN_OCEAN,
   TERRAIN_MAX,
+  TERRAIN_RUGGED,
+  TERRAIN_INRUGGED,
 }
 export function terrainEnum2Info(terrain: number) {
   let retVal!: {

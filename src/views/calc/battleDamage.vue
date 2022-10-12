@@ -110,7 +110,14 @@ import { BattleDamageCalModel } from "@/types/commonType";
 import { battleUnitArray } from "@/staticData/units";
 import ETerrainPicker from "@/components/ETerrainPicker.vue";
 import EPromotionBox from "@/components/EPromotionBox.vue";
-import { eUnitType, terrainEnum2Info } from "@/staticData/enums";
+import { promotionArray } from "@/staticData/promotions";
+import {
+  eNationality,
+  eTerrainType,
+  eUnitType,
+  terrainEnum2Info,
+} from "@/staticData/enums";
+
 @Options({
   data() {
     return {
@@ -171,9 +178,11 @@ export default class BattleDamage extends Vue {
   }
   onAttackPromotionChanged(array: number[]) {
     console.log("attack promotion", array);
+    this.attackModel.promotions = array;
   }
   onDefensePromotionChanged(array: number[]) {
     console.log("defense promotion", array);
+    this.defenseModel.promotions = array;
   }
 
   //functions
@@ -194,6 +203,7 @@ export default class BattleDamage extends Vue {
       terrainId: 0,
       health: 100,
       happiness: 0,
+      promotions: [],
 
       calcAttackValue: 0,
       modifiedAttackValue: 0,
@@ -218,29 +228,172 @@ export default class BattleDamage extends Vue {
         : this.defenseModel.attackValue;
   }
 
+  atkPromotionValidate() {
+    let coe = 0;
+    let targetCoe = 0;
+    console.log("attackpromotion = ", this.attackModel.promotions);
+    if (this.attackModel.promotions.length == 0) return { coe, targetCoe };
+    for (let i = 0; i < this.attackModel.promotions.length; i++) {
+      let promotion = promotionArray[this.attackModel.promotions[i]];
+
+      //自身地形判定
+      if (promotion.selfTerrainType > eTerrainType.TERRAIN_MAX) {
+        if (
+          promotion.selfTerrainType == eTerrainType.TERRAIN_RUGGED &&
+          !terrainEnum2Info(this.attackModel.terrainId).rugged
+        )
+          continue;
+        if (
+          promotion.selfTerrainType == eTerrainType.TERRAIN_INRUGGED &&
+          terrainEnum2Info(this.attackModel.terrainId).rugged
+        )
+          continue;
+      } else if (
+        promotion.selfTerrainType != eTerrainType.TERRAIN_ALL &&
+        promotion.selfTerrainType != this.attackModel.terrainId
+      )
+        continue;
+
+      //目标地形判定
+      if (promotion.targetTerrainType > eTerrainType.TERRAIN_MAX) {
+        if (
+          promotion.targetTerrainType == eTerrainType.TERRAIN_RUGGED &&
+          !terrainEnum2Info(this.defenseModel.terrainId).rugged
+        )
+          continue;
+        if (
+          promotion.targetTerrainType == eTerrainType.TERRAIN_INRUGGED &&
+          terrainEnum2Info(this.defenseModel.terrainId).rugged
+        )
+          continue;
+      } else if (
+        promotion.targetTerrainType != eTerrainType.TERRAIN_ALL &&
+        promotion.targetTerrainType != this.defenseModel.terrainId
+      )
+        continue;
+
+      //目标单位类型判定
+      let match = false;
+      if (promotion.targetUnitType.length != 0) {
+        for (let i = 0; i < promotion.targetUnitType.length; i++) {
+          if (promotion.targetUnitType[i] == this.defenseModel.unitType) {
+            match = true;
+            break;
+          }
+        }
+        if (!match) continue;
+      }
+
+      //荣誉开门勾选时，非uu单位视为蛮族
+      if (
+        promotion.barbarainOnly &&
+        this.defenseModel.nationality > eNationality.NATION_BARBARIAN
+      )
+        continue;
+
+      coe += promotion.selfModify;
+      targetCoe += promotion.targetModify;
+    }
+    return { coe, targetCoe };
+  }
+
+  defPromotionValidate() {
+    let coe = 0;
+    let targetCoe = 0;
+    console.log("defensepromotion = ", this.defenseModel.promotions);
+    if (this.defenseModel.promotions.length == 0) return { coe, targetCoe };
+    for (let i = 0; i < this.defenseModel.promotions.length; i++) {
+      let promotion = promotionArray[this.defenseModel.promotions[i]];
+
+      //自身地形判定
+      if (promotion.selfTerrainType > eTerrainType.TERRAIN_MAX) {
+        if (
+          promotion.selfTerrainType == eTerrainType.TERRAIN_RUGGED &&
+          !terrainEnum2Info(this.defenseModel.terrainId).rugged
+        )
+          continue;
+        if (
+          promotion.selfTerrainType == eTerrainType.TERRAIN_INRUGGED &&
+          terrainEnum2Info(this.defenseModel.terrainId).rugged
+        )
+          continue;
+      } else if (
+        promotion.selfTerrainType != eTerrainType.TERRAIN_ALL &&
+        promotion.selfTerrainType != this.defenseModel.terrainId
+      )
+        continue;
+
+      //目标地形判定
+      if (promotion.targetTerrainType > eTerrainType.TERRAIN_MAX) {
+        if (
+          promotion.targetTerrainType == eTerrainType.TERRAIN_RUGGED &&
+          !terrainEnum2Info(this.attackModel.terrainId).rugged
+        )
+          continue;
+        if (
+          promotion.targetTerrainType == eTerrainType.TERRAIN_INRUGGED &&
+          terrainEnum2Info(this.attackModel.terrainId).rugged
+        )
+          continue;
+      } else if (
+        promotion.targetTerrainType != eTerrainType.TERRAIN_ALL &&
+        promotion.targetTerrainType != this.attackModel.terrainId
+      )
+        continue;
+
+      //目标单位类型判定
+      let match = false;
+      if (promotion.targetUnitType.length != 0) {
+        for (let i = 0; i < promotion.targetUnitType.length; i++) {
+          if (promotion.targetUnitType[i] == this.attackModel.unitType) {
+            match = true;
+            break;
+          }
+        }
+        if (!match) continue;
+      }
+
+      //荣誉开门勾选时，非uu单位视为蛮族
+      if (
+        promotion.barbarainOnly &&
+        this.defenseModel.nationality > eNationality.NATION_BARBARIAN
+      )
+        continue;
+      coe += promotion.selfModify;
+      targetCoe += promotion.targetModify;
+    }
+    return { coe, targetCoe };
+  }
+
   // 战斗力修正
-  attackModify() {
+  battleModify() {
     let atk = this.attackModel.calcAttackValue;
     let def = this.defenseModel.calcAttackValue;
+    let atkCoe = this.atkPromotionValidate();
+    let defCoe = this.defPromotionValidate();
 
-    let atkCoe = 0;
-    let defCoe = 0;
     if (this.attackModel.happiness < 20) {
-      atkCoe -= 2 * this.attackModel.happiness;
+      atkCoe.coe -= 2 * this.attackModel.happiness;
     } else {
-      atkCoe -= 40;
+      atkCoe.coe -= 40;
     }
     let defTerrain = terrainEnum2Info(this.defenseModel.terrainId);
     if (this.defenseModel.TerrainDefense || !defTerrain.rugged) {
-      defCoe += defTerrain.modify;
+      defCoe.coe += defTerrain.modify;
     }
-    this.attackModel.modifiedAttackValue = (atk * (100 + atkCoe)) / 100;
-    this.defenseModel.modifiedAttackValue = (def * (100 + defCoe)) / 100;
+
+    if (this.attackModel.closeCombat || this.defenseModel.closeCombat) {
+      atkCoe.coe += defCoe.targetCoe;
+      defCoe.coe += atkCoe.targetCoe;
+    }
+
+    this.attackModel.modifiedAttackValue = (atk * (100 + atkCoe.coe)) / 100;
+    this.defenseModel.modifiedAttackValue = (def * (100 + defCoe.coe)) / 100;
   }
 
   // 计算伤害
   calcBattleDamage() {
-    this.attackModify();
+    this.battleModify();
     let atk = this.attackModel.modifiedAttackValue;
     let def = this.defenseModel.modifiedAttackValue;
     let atkAvgDamage = 0;
