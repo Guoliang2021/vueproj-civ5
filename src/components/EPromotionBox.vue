@@ -87,6 +87,7 @@ export default class EPromotionBox extends Vue {
     this.checkboxGroup = [];
     let currentUnit = battleUnitArray[unitId];
     const options = [];
+    const selectArray = [];
     for (let i = 0; i < promotionArray.length; i++) {
       let promotion = promotionArray[i];
       let checked = false;
@@ -110,6 +111,7 @@ export default class EPromotionBox extends Vue {
           checked = true;
           disabled = true;
           this.checkboxGroup.push(promotion.name);
+          selectArray.push(promotion.id);
           break;
         }
       }
@@ -123,6 +125,7 @@ export default class EPromotionBox extends Vue {
       options.push(opt);
     }
     this.optionBoxes = options;
+    this.$emit("changed", selectArray);
   }
   created() {
     this.initOptions(eUnit.UNIT_SCOUT);

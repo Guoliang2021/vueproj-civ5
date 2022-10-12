@@ -82,6 +82,13 @@
           />
         </div>
         <div>
+          <EPromotionBox
+            :unitID="defenseModel.unitId"
+            :attack="false"
+            @changed="onDefensePromotionChanged"
+          ></EPromotionBox>
+        </div>
+        <div>
           战斗力:{{ defenseModel.calcAttackValue }}/{{
             defenseModel.modifiedAttackValue
           }}
@@ -163,7 +170,10 @@ export default class BattleDamage extends Vue {
     this.calcBattleDamage();
   }
   onAttackPromotionChanged(array: number[]) {
-    console.log(array);
+    console.log("attack promotion", array);
+  }
+  onDefensePromotionChanged(array: number[]) {
+    console.log("defense promotion", array);
   }
 
   //functions
