@@ -113,6 +113,7 @@ import EPromotionBox from "@/components/EPromotionBox.vue";
 import { promotionArray } from "@/staticData/promotions";
 import {
   eNationality,
+  ePromotion,
   eTerrainType,
   eUnitType,
   terrainEnum2Info,
@@ -180,6 +181,13 @@ export default class BattleDamage extends Vue {
   }
   onDefensePromotionChanged(array: number[]) {
     this.defenseModel.promotions = array;
+    this.defenseModel.garrison = false;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] == ePromotion.PROMOTION_GARRISON) {
+        this.defenseModel.garrison = true;
+        break;
+      }
+    }
     this.calcBattleDamage();
   }
 
@@ -202,6 +210,7 @@ export default class BattleDamage extends Vue {
       health: 100,
       happiness: 0,
       promotions: [],
+      garrison: false,
 
       calcAttackValue: 0,
       modifiedAttackValue: 0,
@@ -290,6 +299,15 @@ export default class BattleDamage extends Vue {
       if (
         promotion.barbarainOnly &&
         this.defenseModel.nationality > eNationality.NATION_BARBARIAN
+      )
+        continue;
+
+      //其他特殊情况
+      if (
+        //atk具有齐射时，判定def是否驻防
+        promotion.id == ePromotion.PROMOTION_VOLLEY &&
+        this.defenseModel.unitType == eUnitType.UNIT_TYPE_CLOSECOMBAT &&
+        this.defenseModel.garrison == false
       )
         continue;
 

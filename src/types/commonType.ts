@@ -15,6 +15,7 @@ export interface BattleDamageCalModel {
   health: number; //当前血量
   happiness: number; //当前红脸
   promotions: number[]; //加成列表
+  garrison: boolean; //是否驻防
 
   // calculate params
   calcAttackValue: number; //攻击力取值
