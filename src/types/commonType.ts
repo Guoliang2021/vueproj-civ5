@@ -66,6 +66,7 @@ export interface PromotionModel {
   targetModify: number; //攻击目标战斗力修正值
   barbarainOnly: boolean; //是否只对蛮族生效
   description: string; //晋升描述
+  uuid: number[]; //单位独有技能时,填入单位id
   iconName: string; //晋升对应图标名称
 }
 

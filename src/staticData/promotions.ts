@@ -19,6 +19,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: false,
     description: "相邻单位战斗力+15%",
+    uuid: [],
     iconName: "UNIT_GREAT_GENERAL.png",
   },
   {
@@ -33,6 +34,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: false,
     description: "防御时战斗力+100%",
+    uuid: [],
     iconName: "UNIT_GREAT_GENERAL.png", //TODO:
   },
   {
@@ -47,6 +49,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: false,
     description: "驻防时战斗力+40%",
+    uuid: [],
     iconName: "UNIT_GREAT_GENERAL.png", //TODO:
   },
   {
@@ -61,6 +64,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: false,
     description: "夹击时战斗力+10%",
+    uuid: [],
     iconName: "UNIT_GREAT_GENERAL.png", //TODO:
   },
   {
@@ -75,6 +79,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: true,
     description: "对蛮族单位战斗力+33%",
+    uuid: [],
     iconName: "UNIT_GREAT_GENERAL.png", //TODO:
   },
   {
@@ -89,6 +94,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: false,
     description: "有相邻友方单位时战斗力+15%",
+    uuid: [],
     iconName: "POLICY_DISCIPLINE.png",
   },
 ];
