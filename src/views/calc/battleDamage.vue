@@ -217,13 +217,18 @@ export default class BattleDamage extends Vue {
 
   // 战斗力判定
   attackValueConfirm() {
-    this.attackModel.calcAttackValue = this.attackModel.closeCombat
-      ? this.attackModel.attackValue
-      : this.attackModel.rangeAttackValue;
-    this.defenseModel.calcAttackValue =
-      !this.attackModel.closeCombat && !this.defenseModel.closeCombat
-        ? this.defenseModel.rangeAttackValue
-        : this.defenseModel.attackValue;
+    if (this.attackModel.unitType != eUnitType.UNIT_TYPE_CITY) {
+      this.attackModel.calcAttackValue = this.attackModel.closeCombat
+        ? this.attackModel.attackValue
+        : this.attackModel.rangeAttackValue;
+    }
+
+    if (this.defenseModel.unitType != eUnitType.UNIT_TYPE_CITY) {
+      this.defenseModel.calcAttackValue =
+        !this.attackModel.closeCombat && !this.defenseModel.closeCombat
+          ? this.defenseModel.rangeAttackValue
+          : this.defenseModel.attackValue;
+    }
   }
 
   atkPromotionValidate() {
@@ -353,7 +358,7 @@ export default class BattleDamage extends Vue {
       //荣誉开门勾选时，非uu单位视为蛮族
       if (
         promotion.barbarainOnly &&
-        this.defenseModel.nationality > eNationality.NATION_BARBARIAN
+        this.attackModel.nationality > eNationality.NATION_BARBARIAN
       )
         continue;
       coe += promotion.selfModify;
