@@ -255,7 +255,7 @@ export const battleUnitArray: Array<UnitModel> = [
     attackValue: 7,
     rangeAttackValue: 10,
     terrainDefense: false,
-    originPromotion: [],
+    originPromotion: [ePromotion.PROMOTION_ACCURACY_I],
     movement: 4,
     resource: eUnitResource.UNIT_RESOURCE_NONE,
     startTechnology: eTechnology.TECH_THE_WHEEL,

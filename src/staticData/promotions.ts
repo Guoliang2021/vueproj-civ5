@@ -99,7 +99,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "POLICY_DISCIPLINE.png",
   },
   {
-    id: ePromotion.PROMOTION_EMBATTLE_I,
+    id: ePromotion.PROMOTION_FORMATION_I,
     name: "列阵一级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -114,7 +114,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS24.png",
   },
   {
-    id: ePromotion.PROMOTION_EMBATTLE_II,
+    id: ePromotion.PROMOTION_FORMATION_II,
     name: "列阵二级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -129,7 +129,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS25.png",
   },
   {
-    id: ePromotion.PROMOTION_STRIKE_I,
+    id: ePromotion.PROMOTION_SHOCK_I,
     name: "冲击一级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -144,7 +144,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS44.png",
   },
   {
-    id: ePromotion.PROMOTION_STRIKE_II,
+    id: ePromotion.PROMOTION_SHOCK_II,
     name: "冲击二级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -159,7 +159,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS45.png",
   },
   {
-    id: ePromotion.PROMOTION_STRIKE_III,
+    id: ePromotion.PROMOTION_SHOCK_III,
     name: "冲击三级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -174,7 +174,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS46.png",
   },
   {
-    id: ePromotion.PROMOTION_PRACTICE_I,
+    id: ePromotion.PROMOTION_DRILL_I,
     name: "操练一级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -189,7 +189,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS19.png",
   },
   {
-    id: ePromotion.PROMOTION_PRACTICE_II,
+    id: ePromotion.PROMOTION_DRILL_II,
     name: "操练二级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -204,7 +204,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS20.png",
   },
   {
-    id: ePromotion.PROMOTION_PRACTICE_III,
+    id: ePromotion.PROMOTION_DRILL_III,
     name: "操练三级",
     scene: eScene.SCENE_ALL,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -219,7 +219,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS21.png",
   },
   {
-    id: ePromotion.PROMOTION_HIDE_I,
+    id: ePromotion.PROMOTION_COVER_I,
     name: "隐蔽一级",
     scene: eScene.SCENE_DEF,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -234,7 +234,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS14.png",
   },
   {
-    id: ePromotion.PROMOTION_HIDE_II,
+    id: ePromotion.PROMOTION_COVER_II,
     name: "隐蔽二级",
     scene: eScene.SCENE_DEF,
     selfUnitType: eUnitType.UNIT_TYPE_CLOSECOMBAT,
@@ -249,7 +249,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS15.png",
   },
   {
-    id: ePromotion.PROMOTION_ACCURATE_I,
+    id: ePromotion.PROMOTION_ACCURACY_I,
     name: "精准一级",
     scene: eScene.SCENE_ATK,
     selfUnitType: eUnitType.UNIT_TYPE_REMOTE,
@@ -264,7 +264,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS0.png",
   },
   {
-    id: ePromotion.PROMOTION_ACCURATE_II,
+    id: ePromotion.PROMOTION_ACCURACY_II,
     name: "精准二级",
     scene: eScene.SCENE_ATK,
     selfUnitType: eUnitType.UNIT_TYPE_REMOTE,
@@ -279,7 +279,7 @@ export const promotionArray: Array<PromotionModel> = [
     iconName: "PROMOTION_PROMOTION_ATLAS1.png",
   },
   {
-    id: ePromotion.PROMOTION_ACCURATE_III,
+    id: ePromotion.PROMOTION_ACCURACY_III,
     name: "精准三级",
     scene: eScene.SCENE_ATK,
     selfUnitType: eUnitType.UNIT_TYPE_REMOTE,
