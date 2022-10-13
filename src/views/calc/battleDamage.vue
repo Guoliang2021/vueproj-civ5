@@ -140,12 +140,10 @@ export default class BattleDamage extends Vue {
   //slots
   onAttackUnitChange(unitId: number) {
     this.initCalcModel(unitId, true);
-    this.attackValueConfirm();
     this.calcBattleDamage();
   }
   onDefenseUnitChange(unitId: number) {
     this.initCalcModel(unitId, false);
-    this.attackValueConfirm();
     this.calcBattleDamage();
   }
   onAttackTerrainChange(terrainId: number) {
@@ -177,12 +175,12 @@ export default class BattleDamage extends Vue {
     this.calcBattleDamage();
   }
   onAttackPromotionChanged(array: number[]) {
-    console.log("attack promotion", array);
     this.attackModel.promotions = array;
+    this.calcBattleDamage();
   }
   onDefensePromotionChanged(array: number[]) {
-    console.log("defense promotion", array);
     this.defenseModel.promotions = array;
+    this.calcBattleDamage();
   }
 
   //functions
@@ -231,7 +229,6 @@ export default class BattleDamage extends Vue {
   atkPromotionValidate() {
     let coe = 0;
     let targetCoe = 0;
-    console.log("attackpromotion = ", this.attackModel.promotions);
     if (this.attackModel.promotions.length == 0) return { coe, targetCoe };
     for (let i = 0; i < this.attackModel.promotions.length; i++) {
       let promotion = promotionArray[this.attackModel.promotions[i]];
@@ -300,7 +297,7 @@ export default class BattleDamage extends Vue {
   defPromotionValidate() {
     let coe = 0;
     let targetCoe = 0;
-    console.log("defensepromotion = ", this.defenseModel.promotions);
+    if (this.defenseModel.promotions == undefined) return { coe, targetCoe };
     if (this.defenseModel.promotions.length == 0) return { coe, targetCoe };
     for (let i = 0; i < this.defenseModel.promotions.length; i++) {
       let promotion = promotionArray[this.defenseModel.promotions[i]];
@@ -371,7 +368,6 @@ export default class BattleDamage extends Vue {
     let def = this.defenseModel.calcAttackValue;
     let atkCoe = this.atkPromotionValidate();
     let defCoe = this.defPromotionValidate();
-
     if (this.attackModel.happiness < 20) {
       atkCoe.coe -= 2 * this.attackModel.happiness;
     } else {
@@ -381,18 +377,18 @@ export default class BattleDamage extends Vue {
     if (this.defenseModel.TerrainDefense || !defTerrain.rugged) {
       defCoe.coe += defTerrain.modify;
     }
-
     if (this.attackModel.closeCombat || this.defenseModel.closeCombat) {
       atkCoe.coe += defCoe.targetCoe;
       defCoe.coe += atkCoe.targetCoe;
     }
-
     this.attackModel.modifiedAttackValue = (atk * (100 + atkCoe.coe)) / 100;
     this.defenseModel.modifiedAttackValue = (def * (100 + defCoe.coe)) / 100;
   }
 
   // 计算伤害
   calcBattleDamage() {
+    if (this.attackModel == undefined || this.defenseModel == undefined) return;
+    this.attackValueConfirm();
     this.battleModify();
     let atk = this.attackModel.modifiedAttackValue;
     let def = this.defenseModel.modifiedAttackValue;
