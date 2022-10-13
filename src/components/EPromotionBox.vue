@@ -113,7 +113,7 @@ export default class EPromotionBox extends Vue {
           break;
         }
       }
-      if (!match) continue;
+      if (!match && promotion.uuid.length != 0) continue;
 
       // 单位固有
       for (let j = 0; j < currentUnit.originPromotion.length; j++) {
