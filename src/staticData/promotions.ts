@@ -35,7 +35,7 @@ export const promotionArray: Array<PromotionModel> = [
     barbarainOnly: false,
     description: "防御时战斗力+100%",
     uuid: [],
-    iconName: "UNIT_GREAT_GENERAL.png", //TODO:
+    iconName: "IMPROVEMENT_CITADEL.png",
   },
   {
     id: ePromotion.PROMOTION_GARRISON,
@@ -50,7 +50,7 @@ export const promotionArray: Array<PromotionModel> = [
     barbarainOnly: false,
     description: "驻防时战斗力+40%",
     uuid: [],
-    iconName: "UNIT_GREAT_GENERAL.png", //TODO:
+    iconName: "BUILDING_ARMORY.png",
   },
   {
     id: ePromotion.PROMOTION_PINCER,
@@ -65,7 +65,7 @@ export const promotionArray: Array<PromotionModel> = [
     barbarainOnly: false,
     description: "夹击时战斗力+10%",
     uuid: [],
-    iconName: "UNIT_GREAT_GENERAL.png", //TODO:
+    iconName: "POLICY_PROFESSIONAL_ARMY.png",
   },
   {
     id: ePromotion.PROMOTION_HONOR,
@@ -80,7 +80,7 @@ export const promotionArray: Array<PromotionModel> = [
     barbarainOnly: true,
     description: "对蛮族单位战斗力+33%",
     uuid: [],
-    iconName: "UNIT_GREAT_GENERAL.png", //TODO:
+    iconName: "POLICY_NEW_ORDER.png",
   },
   {
     id: ePromotion.PROMOTION_HONOR_DISCIPLINE,
