@@ -25,7 +25,7 @@
             class="el-slider-citydefence"
             v-model="attackModel.calcAttackValue"
             @change="onAttackCityDefenceChange"
-            :disabled="attackModel.unitType != unitTypeCity"
+            v-show="attackModel.unitType == unitTypeCity"
           />
         </div>
         <div>
@@ -78,7 +78,7 @@
             class="el-slider-citydefence"
             v-model="defenseModel.calcAttackValue"
             @change="onDefenseCityDefenceChange"
-            :disabled="defenseModel.unitType != unitTypeCity"
+            v-show="defenseModel.unitType == unitTypeCity"
           />
         </div>
         <div>
