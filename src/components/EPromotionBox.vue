@@ -105,6 +105,16 @@ export default class EPromotionBox extends Vue {
         if (!this.attack && promotion.scene == eScene.SCENE_ATK) continue;
       }
 
+      // 过滤单位特有
+      let match = false;
+      for (let j = 0; j < promotion.uuid.length; j++) {
+        if (promotion.uuid[j] == currentUnit.id) {
+          match = true;
+          break;
+        }
+      }
+      if (!match) continue;
+
       // 单位固有
       for (let j = 0; j < currentUnit.originPromotion.length; j++) {
         if (promotion.id == currentUnit.originPromotion[j]) {
