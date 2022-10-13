@@ -41,6 +41,7 @@
             :unitID="attackModel.unitId"
             :attack="true"
             @changed="onAttackPromotionChanged"
+            v-show="attackModel.unitType != unitTypeCity"
           ></EPromotionBox>
         </div>
         <div>
@@ -86,6 +87,7 @@
             :unitID="defenseModel.unitId"
             :attack="false"
             @changed="onDefensePromotionChanged"
+            v-show="defenseModel.unitType != unitTypeCity"
           ></EPromotionBox>
         </div>
         <div>
@@ -297,8 +299,9 @@ export default class BattleDamage extends Vue {
 
       //荣誉开门勾选时，非uu单位视为蛮族
       if (
-        promotion.barbarainOnly &&
-        this.defenseModel.nationality > eNationality.NATION_BARBARIAN
+        (promotion.barbarainOnly &&
+          this.defenseModel.nationality > eNationality.NATION_BARBARIAN) ||
+        this.defenseModel.unitType == eUnitType.UNIT_TYPE_CITY
       )
         continue;
 
@@ -400,7 +403,7 @@ export default class BattleDamage extends Vue {
     if (this.defenseModel.TerrainDefense || !defTerrain.rugged) {
       defCoe.coe += defTerrain.modify;
     }
-    if (this.attackModel.closeCombat || this.defenseModel.closeCombat) {
+    if (this.attackModel.attackRange == 1) {
       atkCoe.coe += defCoe.targetCoe;
       defCoe.coe += atkCoe.targetCoe;
     }
