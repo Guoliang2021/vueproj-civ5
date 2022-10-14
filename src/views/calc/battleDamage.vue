@@ -315,6 +315,13 @@ export default class BattleDamage extends Vue {
       )
         continue;
 
+      if (
+        //夹击对攻城无效
+        promotion.id == ePromotion.PROMOTION_PINCER &&
+        this.defenseModel.unitType == eUnitType.UNIT_TYPE_CITY
+      )
+        continue;
+
       coe += promotion.selfModify;
       targetCoe += promotion.targetModify;
     }
@@ -427,6 +434,13 @@ export default class BattleDamage extends Vue {
     let defMaxDamage = 0;
     let atkhealth = this.attackModel.health;
     let defhealth = this.defenseModel.health;
+
+    //日本ua
+    if (this.attackModel.nationality == eNationality.NATION_JANPAN)
+      atkhealth = 100;
+    if (this.defenseModel.nationality == eNationality.NATION_JANPAN)
+      defhealth = 100;
+
     atkAvgDamage = this.attackDamageCalc(atk, def, 30, atkhealth);
     atkMinDamage = this.attackDamageCalc(atk, def, 24, atkhealth);
     atkMaxDamage = this.attackDamageCalc(atk, def, 36, atkhealth);
