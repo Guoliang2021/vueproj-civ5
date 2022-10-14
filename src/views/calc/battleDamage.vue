@@ -420,16 +420,24 @@ export default class BattleDamage extends Vue {
     let atk = this.attackModel.modifiedAttackValue;
     let def = this.defenseModel.modifiedAttackValue;
     let atkAvgDamage = 0;
+    let atkMinDamage = 0;
+    let atkMaxDamage = 0;
     let defAvgDamage = 0;
+    let defMinDamage = 0;
+    let defMaxDamage = 0;
     let atkhealth = this.attackModel.health;
     let defhealth = this.defenseModel.health;
     atkAvgDamage = this.attackDamageCalc(atk, def, 30, atkhealth);
+    atkMinDamage = this.attackDamageCalc(atk, def, 24, atkhealth);
+    atkMaxDamage = this.attackDamageCalc(atk, def, 36, atkhealth);
     defAvgDamage = this.defenseDamageCalc(atk, def, 30, defhealth);
-    this.attackModel.minDamage = ((atkAvgDamage * 24) / 30).toFixed(1);
-    this.attackModel.maxDamage = ((atkAvgDamage * 36) / 30).toFixed(1);
+    defMinDamage = this.defenseDamageCalc(atk, def, 24, defhealth);
+    defMaxDamage = this.defenseDamageCalc(atk, def, 36, defhealth);
+    this.attackModel.minDamage = atkMinDamage.toFixed(1);
+    this.attackModel.maxDamage = atkMaxDamage.toFixed(1);
     this.attackModel.avgDamage = atkAvgDamage.toFixed(1);
-    this.defenseModel.minDamage = ((defAvgDamage * 24) / 30).toFixed(1);
-    this.defenseModel.maxDamage = ((defAvgDamage * 36) / 30).toFixed(1);
+    this.defenseModel.minDamage = defMinDamage.toFixed(1);
+    this.defenseModel.maxDamage = defMaxDamage.toFixed(1);
     this.defenseModel.avgDamage = defAvgDamage.toFixed(1);
   }
 
