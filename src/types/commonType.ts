@@ -59,7 +59,7 @@ export interface PromotionModel {
   id: number; //晋升id ePromotion
   name: string; //晋升名称
   scene: number; //战斗场景 eScene
-  selfUnitType: number; //自身有效单位类型
+  selfUnitType: number[]; //自身有效单位类型
   selfTerrainType: number; //自身有限地形
   selfModify: number; //自身战斗力修正值
   targetUnitType: number[]; //攻击目标有效单位类型,可能有多个

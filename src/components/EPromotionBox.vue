@@ -40,7 +40,7 @@ import { Options, Vue } from "vue-class-component";
 import { promotionArray } from "@/staticData/promotions";
 import { battleUnitArray } from "@/staticData/units";
 import { EPromotionBoxOption } from "@/types/commonType";
-import { eScene, eUnit, eUnitType } from "@/staticData/enums";
+import { eScene, eUnit } from "@/staticData/enums";
 import { reactive } from "vue";
 @Options({
   props: {
@@ -92,12 +92,18 @@ export default class EPromotionBox extends Vue {
       let promotion = promotionArray[i];
       let checked = false;
       let disabled = false;
+
       //   过滤单位类型
-      if (
-        promotion.selfUnitType != eUnitType.UNIT_TYPE_ALL &&
-        promotion.selfUnitType != currentUnit.type
-      )
-        continue;
+      if (promotion.selfUnitType.length != 0) {
+        let match = false;
+        for (let i = 0; i < promotion.selfUnitType[i]; i++) {
+          if (promotion.selfUnitType[i] == currentUnit.type) {
+            match = true;
+            break;
+          }
+        }
+        if (!match) continue;
+      }
 
       //   过滤场景
       if (promotion.scene != eScene.SCENE_ALL) {
