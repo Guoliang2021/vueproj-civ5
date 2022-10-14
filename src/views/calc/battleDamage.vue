@@ -298,12 +298,13 @@ export default class BattleDamage extends Vue {
       }
 
       //荣誉开门勾选时，非uu单位视为蛮族
-      if (
-        (promotion.barbarainOnly &&
-          this.defenseModel.nationality > eNationality.NATION_BARBARIAN) ||
-        this.defenseModel.unitType == eUnitType.UNIT_TYPE_CITY
-      )
-        continue;
+      if (promotion.barbarainOnly) {
+        if (
+          this.defenseModel.nationality > eNationality.NATION_BARBARIAN ||
+          this.defenseModel.unitType == eUnitType.UNIT_TYPE_CITY
+        )
+          continue;
+      }
 
       //其他特殊情况
       if (
