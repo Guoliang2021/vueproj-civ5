@@ -322,6 +322,12 @@ export default class BattleDamage extends Vue {
       )
         continue;
 
+      if (
+        promotion.id == ePromotion.PROMOTION_RUSSIA_BLADE &&
+        this.defenseModel.health == 100
+      )
+        continue;
+
       coe += promotion.selfModify;
       targetCoe += promotion.targetModify;
     }
