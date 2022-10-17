@@ -466,7 +466,7 @@ export const promotionArray: Array<PromotionModel> = [
     targetModify: 0,
     barbarainOnly: false,
     description: "境外战斗力+20%",
-    uuid: [eUnit.UNIT_CELT_PICTISH_WARRIOR],
+    uuid: [eUnit.UNIT_CELT_PICTISH_WARRIOR, eUnit.UNIT_FRENCH_FOREIGNLEGION],
     iconName: "PROMOTION_59.png",
   },
   {
