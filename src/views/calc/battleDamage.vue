@@ -117,6 +117,7 @@ import {
   eNationality,
   ePromotion,
   eTerrainType,
+  eUnit,
   eUnitType,
   terrainEnum2Info,
 } from "@/staticData/enums";
@@ -321,6 +322,16 @@ export default class BattleDamage extends Vue {
         this.defenseModel.unitType == eUnitType.UNIT_TYPE_CITY
       )
         continue;
+
+      //奥地利翼骑兵夹击加成15%
+      if (
+        promotion.id == ePromotion.PROMOTION_PINCER &&
+        this.attackModel.unitId == eUnit.UNIT_AUSTRIAN_HUSSAR
+      ) {
+        coe += 15;
+        targetCoe += 0;
+        continue;
+      }
 
       if (
         promotion.id == ePromotion.PROMOTION_RUSSIA_BLADE &&
