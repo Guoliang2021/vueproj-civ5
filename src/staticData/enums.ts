@@ -709,7 +709,6 @@ export enum eUnit {
   UNIT_BOMBER,
   UNIT_MOBILE_SAM,
   UNIT_FIGHTER,
-  UNIT_MAX,
   /*infomation*/
   UNIT_MECH,
   UNIT_XCOM_SQUAD,
@@ -719,4 +718,5 @@ export enum eUnit {
   UNIT_JET_FIGHTER,
   UNIT_MECHANIZED_INFANTRY,
   UNIT_STEALTH_BOMBER,
+  UNIT_MAX,
 }
