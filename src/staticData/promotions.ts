@@ -518,6 +518,7 @@ export const promotionArray: Array<PromotionModel> = [
       eUnit.UNIT_TREBUCHET,
       eUnit.UNIT_CANNON,
       eUnit.UNIT_ARTILLERY,
+      eUnit.UNIT_ROCKET_ARTILLERY,
     ],
     iconName: "PROMOTION_59.png",
   },

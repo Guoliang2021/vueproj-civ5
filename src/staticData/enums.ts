@@ -695,7 +695,6 @@ export enum eUnit {
   UNIT_SUBMARINE,
   UNIT_BATTLESHIP,
   UNIT_DESTROYER,
-  UNIT_MAX,
   /*atomic*/
   UNIT_AMERICAN_B17,
   UNIT_ANTI_TANK_GUN,
@@ -710,6 +709,7 @@ export enum eUnit {
   UNIT_BOMBER,
   UNIT_MOBILE_SAM,
   UNIT_FIGHTER,
+  UNIT_MAX,
   /*infomation*/
   UNIT_MECH,
   UNIT_XCOM_SQUAD,
