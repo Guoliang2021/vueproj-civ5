@@ -28,7 +28,6 @@ export default class ImmigrantProduct extends Vue {
     },
   ];
   onClicked() {
-    console.log("click");
     this.items.pop();
   }
 }
