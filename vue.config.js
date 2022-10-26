@@ -4,6 +4,7 @@ module.exports = defineConfig({
 });
 
 module.exports = {
+  publicPath:"",
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === "production") {
       config.mode = "production";
