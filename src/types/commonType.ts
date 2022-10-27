@@ -89,3 +89,18 @@ export interface EPromotionBoxOption {
   disabled: boolean;
   src: string;
 }
+
+export interface LandOutPut {
+  index: number;
+  food: number;
+  production: number;
+  gold: number;
+  description: string;
+}
+
+export interface TurnOutPut {
+  index: number;
+  production: number;
+  gold: number;
+  landList: number[];
+}
