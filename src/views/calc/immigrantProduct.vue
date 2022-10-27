@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="8">
+      <el-col :span="12">
         <img class="citizen-img" src="@/assets/citizen.png" />
         <el-input-number
           v-model="citizens"
@@ -11,7 +11,7 @@
           @change="onCitizensChange"
         />
       </el-col>
-      <el-col :span="8">
+      <el-col :span="12">
         <img class="happiness-img" src="@/assets/happiness.png" />
         <el-input-number
           v-model="happiness"
@@ -21,14 +21,26 @@
           @change="onHappinessChange"
         />
       </el-col>
-      <el-col class="location" :span="8">
-        <span>平地</span>
-        <el-switch
-          v-model="cityLocation"
-          style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-          @change="onCityLocationChange"
+    </el-row>
+    <el-row>
+      <el-col class="location" :span="6">
+        <img class="hill-img" src="@/assets/icons/TERRAIN_HILL.png" />
+        <el-switch v-model="hill" @change="onHillChange" />
+      </el-col>
+      <el-col :span="6">
+        <img class="granary-img" src="@/assets/icons/BUILDING_GRANARY.png" />
+        <el-switch v-model="granary" @change="onGranaryChange" />
+      </el-col>
+      <el-col :span="6">
+        <img
+          class="watermill-img"
+          src="@/assets/icons/BUILDING_WATERMILL.png"
         />
-        <span>丘陵</span>
+        <el-switch v-model="watermill" @change="onWateMillChange" />
+      </el-col>
+      <el-col :span="6">
+        <img class="goldenAge-img" src="@/assets/golden_age.png" />
+        <el-switch v-model="goldenAge" @change="onGoldenAgeChange" />
       </el-col>
     </el-row>
   </div>
@@ -41,7 +53,10 @@ export default class ImmigrantProduct extends Vue {
   // properties
   citizens = 5;
   happiness = 0;
-  cityLocation = false; //true:丘陵,false:
+  hill = false; //true:丘陵,false:
+  granary = false;
+  watermill = false;
+  goldenAge = false;
 
   //slots
   onCitizensChange(value: number) {
@@ -50,8 +65,17 @@ export default class ImmigrantProduct extends Vue {
   onHappinessChange(value: number) {
     this.happiness = value;
   }
-  onCityLocationChange(value: boolean) {
-    this.cityLocation = value;
+  onHillChange(value: boolean) {
+    this.hill = value;
+  }
+  onGranaryChange(value: boolean) {
+    this.granary = value;
+  }
+  onWateMillChange(value: boolean) {
+    this.watermill = value;
+  }
+  onGoldenAgeChange(value: boolean) {
+    this.goldenAge = value;
   }
 }
 </script>
@@ -81,5 +105,16 @@ export default class ImmigrantProduct extends Vue {
   line-height: 22px;
   position: relative;
   display: inline-block;
+}
+.granary-img,
+.watermill-img,
+.hill-img,
+.goldenAge-img {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+}
+.el-row {
+  margin-bottom: 10px;
 }
 </style>
