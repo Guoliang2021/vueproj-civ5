@@ -158,15 +158,60 @@ export default class ImmigrantProduct extends Vue {
     },
     {
       index: 2,
-      description: "沿河丘陵",
+      description: "沿河丘陵2",
+      production: 2,
+      food: 2,
+      gold: 0,
+    },
+    {
+      index: 3,
+      description: "沿河丘陵3",
+      production: 2,
+      food: 2,
+      gold: 0,
+    },
+    {
+      index: 4,
+      description: "沿河丘陵4",
+      production: 2,
+      food: 2,
+      gold: 0,
+    },
+    {
+      index: 5,
+      description: "沿河丘陵5",
+      production: 2,
+      food: 2,
+      gold: 0,
+    },
+    {
+      index: 6,
+      description: "沿河丘陵6",
+      production: 2,
+      food: 2,
+      gold: 0,
+    },
+    {
+      index: 7,
+      description: "沿河丘陵7",
+      production: 2,
+      food: 2,
+      gold: 0,
+    },
+    {
+      index: 8,
+      description: "沿河丘陵8",
       production: 2,
       food: 2,
       gold: 0,
     },
   ]);
+
   //slots
   onCitizensChange(value: number) {
     this.citizens = value;
+    let container: LandOutPut[] = [];
+    this.combine(0, 0, container);
   }
   onHappinessChange(value: number) {
     this.happiness = value;
@@ -220,6 +265,40 @@ export default class ImmigrantProduct extends Vue {
   }
   onAddGoldChange(value: number) {
     this.landAdd.gold = value;
+  }
+
+  created() {
+    console.log(this.surplusGrain2Production(20));
+  }
+
+  //functions
+  surplusGrain2Production(grain: number) {
+    if (grain < 0) return 0;
+    if (grain <= 2) return grain;
+    if (grain <= 4) return 2 + (grain - 2) / 2.0;
+    else return 3 + (grain - 4) / 4.0;
+  }
+
+  combine(index: number, begin: number, container: LandOutPut[]) {
+    let combineString = "";
+    if (index == this.citizens) {
+      for (let i = 0; i < this.citizens; i++) {
+        combineString += container[i].description;
+        combineString += " ";
+      }
+      console.log(combineString);
+      return;
+    }
+    for (let j = begin; j < this.landList.length - this.citizens + index; j++) {
+      container[index] = {
+        index: this.landList[j].index,
+        description: this.landList[j].description,
+        food: this.landList[j].food,
+        production: this.landList[j].production,
+        gold: this.landList[j].gold,
+      };
+      this.combine(index + 1, j + 1, container);
+    }
   }
 }
 </script>
