@@ -119,7 +119,7 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { LandOutPut } from "@/types/commonType";
+import { LandOutPut, TurnOutPut } from "@/types/commonType";
 import ENumberSelect from "@/components/ENumberSelect.vue";
 import { ElMessage } from "element-plus";
 import { reactive } from "vue";
@@ -134,6 +134,7 @@ export default class ImmigrantProduct extends Vue {
   granary = false;
   watermill = false;
   goldenAge = false;
+  baseOutPut!: { food: number; production: number };
   landAdd: LandOutPut = reactive({
     index: 0,
     description: "",
@@ -144,65 +145,65 @@ export default class ImmigrantProduct extends Vue {
   landList: LandOutPut[] = reactive([
     {
       index: 0,
-      description: "麦子",
-      production: 0,
+      description: "平原麦",
+      production: 1,
       food: 2,
       gold: 0,
     },
     {
       index: 1,
-      description: "石头",
+      description: "花岗石",
       production: 1,
       food: 2,
       gold: 0,
     },
     {
       index: 2,
-      description: "沿河丘陵2",
+      description: "丘陵",
       production: 2,
-      food: 2,
+      food: 0,
       gold: 0,
     },
     {
       index: 3,
-      description: "沿河丘陵3",
-      production: 2,
-      food: 2,
+      description: "矿山",
+      production: 3,
+      food: 0,
       gold: 0,
     },
     {
       index: 4,
-      description: "沿河丘陵4",
+      description: "平原马",
       production: 2,
-      food: 2,
+      food: 1,
       gold: 0,
     },
     {
       index: 5,
-      description: "沿河丘陵5",
-      production: 2,
-      food: 2,
+      description: "平原马圈",
+      production: 3,
+      food: 1,
       gold: 0,
     },
     {
       index: 6,
-      description: "沿河丘陵6",
-      production: 2,
+      description: "平原盐",
+      production: 1,
       food: 2,
-      gold: 0,
+      gold: 1,
     },
     {
       index: 7,
-      description: "沿河丘陵7",
+      description: "平原盐矿",
       production: 2,
-      food: 2,
-      gold: 0,
+      food: 3,
+      gold: 1,
     },
     {
       index: 8,
-      description: "沿河丘陵8",
+      description: "羊",
       production: 2,
-      food: 2,
+      food: 1,
       gold: 0,
     },
   ]);
@@ -267,11 +268,26 @@ export default class ImmigrantProduct extends Vue {
     this.landAdd.gold = value;
   }
 
-  created() {
-    console.log(this.surplusGrain2Production(20));
+  //functions
+  baseProdution() {
+    //城市自带
+    this.baseOutPut.food += 2;
+    this.baseOutPut.production += 1;
+    if (this.hill) this.baseOutPut.production++;
+
+    //宫殿
+    this.baseOutPut.production += 3;
+
+    //粮仓
+    if (this.granary) this.baseOutPut.food += 2;
+
+    //水车
+    if (this.watermill) {
+      this.baseOutPut.food += 2;
+      this.baseOutPut.production += 1;
+    }
   }
 
-  //functions
   surplusGrain2Production(grain: number) {
     if (grain < 0) return 0;
     if (grain <= 2) return grain;
