@@ -39,7 +39,11 @@
       </el-col>
     </el-row>
 
-    <el-table :data="landList">
+    <el-table
+      :data="landList"
+      height="200"
+      :default-sort="{ prop: 'index', order: 'descending' }"
+    >
       <el-table-column prop="description" align="center">
         <template v-slot:header>
           <img class="img-table" src="@/assets/terrain.png" />
@@ -60,7 +64,7 @@
           <img class="img-table" src="@/assets/gold.png" />
         </template>
       </el-table-column>
-      <el-table-column fixed="left" width="30">
+      <el-table-column fixed="left" width="30" prop="index">
         <template #default="scope">
           <img
             class="remove-img"
