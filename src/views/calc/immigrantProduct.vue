@@ -4,38 +4,40 @@
       <el-col :span="12">
         <img class="citizen-img" src="@/assets/citizen.png" />
         <ENumberSelect
+          v-model="citizens"
           :minNumber="1"
           :maxNumber="10"
           :step="1"
-          @change="onCitizensChange"
+          @change="refresh"
         />
       </el-col>
       <el-col :span="12">
         <img class="happiness-img" src="@/assets/happiness.png" />
         <ENumberSelect
+          v-model="happiness"
           :minNumber="0"
           :maxNumber="10"
           :step="1"
-          @change="onHappinessChange"
+          @change="refresh"
         />
       </el-col>
     </el-row>
     <el-row>
       <el-col class="location" :span="6">
         <img class="img-switch" src="@/assets/icons/TERRAIN_HILL.png" />
-        <el-switch v-model="hill" @change="onHillChange" />
+        <el-switch v-model="hill" @change="refresh" />
       </el-col>
       <el-col :span="6">
         <img class="img-switch" src="@/assets/icons/BUILDING_GRANARY.png" />
-        <el-switch v-model="granary" @change="onGranaryChange" />
+        <el-switch v-model="granary" @change="refresh" />
       </el-col>
       <el-col :span="6">
         <img class="img-switch" src="@/assets/icons/BUILDING_WATERMILL.png" />
-        <el-switch v-model="watermill" @change="onWateMillChange" />
+        <el-switch v-model="watermill" @change="refresh" />
       </el-col>
       <el-col :span="6">
         <img class="goldenAge-img" src="@/assets/golden_age.png" />
-        <el-switch v-model="goldenAge" @change="onGoldenAgeChange" />
+        <el-switch v-model="goldenAge" @change="refresh" />
       </el-col>
     </el-row>
 
@@ -89,28 +91,28 @@
       <el-col :span="5">
         <img class="img-table" src="@/assets/food.png" />
         <ENumberSelect
+          v-model="landAdd.food"
           :minNumber="0"
           :maxNumber="5"
           :step="1"
-          @numberChange="onAddFoodChange"
         ></ENumberSelect>
       </el-col>
       <el-col :span="5">
         <img class="img-table" src="@/assets/production.png" />
         <ENumberSelect
+          v-model="landAdd.production"
           :minNumber="0"
           :maxNumber="5"
           :step="1"
-          @numberChange="onAddProductionChange"
         ></ENumberSelect>
       </el-col>
       <el-col :span="5">
         <img class="img-table" src="@/assets/gold.png" />
         <ENumberSelect
+          v-model="landAdd.gold"
           :minNumber="0"
           :maxNumber="5"
           :step="1"
-          @numberChange="onAddGoldChange"
         ></ENumberSelect>
       </el-col>
     </el-row>
@@ -134,7 +136,11 @@ export default class ImmigrantProduct extends Vue {
   granary = false;
   watermill = false;
   goldenAge = false;
-  baseOutPut!: { food: number; production: number };
+  combineIndex = 0;
+  baseOutPut = {
+    food: 0,
+    production: 0,
+  };
   landAdd: LandOutPut = reactive({
     index: 0,
     description: "",
@@ -142,6 +148,7 @@ export default class ImmigrantProduct extends Vue {
     food: 0,
     gold: 0,
   });
+  turnCombines: TurnOutPut[] = reactive([]);
   landList: LandOutPut[] = reactive([
     {
       index: 0,
@@ -209,32 +216,24 @@ export default class ImmigrantProduct extends Vue {
   ]);
 
   //slots
-  onCitizensChange(value: number) {
-    this.citizens = value;
+  refresh() {
+    this.calcBaseProdution();
+    this.baseOutPut.production += this.surplusGrain2Production(
+      this.baseOutPut.food - 2 * this.citizens
+    );
     let container: LandOutPut[] = [];
+    this.combineIndex = 0;
+    this.turnCombines = [];
     this.combine(0, 0, container);
   }
-  onHappinessChange(value: number) {
-    this.happiness = value;
-  }
-  onHillChange(value: boolean) {
-    this.hill = value;
-  }
-  onGranaryChange(value: boolean) {
-    this.granary = value;
-  }
-  onWateMillChange(value: boolean) {
-    this.watermill = value;
-  }
-  onGoldenAgeChange(value: boolean) {
-    this.goldenAge = value;
-  }
+
   onRemoveRow(row: number) {
     if (row > this.landList.length) return;
     this.landList.splice(row, 1);
     for (let i = 0; i < this.landList.length; i++) {
       this.landList[i].index = i;
     }
+    this.refresh();
   }
   onAddRow() {
     if (this.landAdd.description.length == 0) {
@@ -256,20 +255,15 @@ export default class ImmigrantProduct extends Vue {
       gold: this.landAdd.gold,
     };
     this.landList.push(temp);
-    console.log(this.landList);
-  }
-  onAddFoodChange(value: number) {
-    this.landAdd.food = value;
-  }
-  onAddProductionChange(value: number) {
-    this.landAdd.production = value;
-  }
-  onAddGoldChange(value: number) {
-    this.landAdd.gold = value;
+    this.refresh();
   }
 
   //functions
-  baseProdution() {
+  calcBaseProdution() {
+    //先重置
+    this.baseOutPut.food = 0;
+    this.baseOutPut.production = 0;
+
     //城市自带
     this.baseOutPut.food += 2;
     this.baseOutPut.production += 1;
@@ -296,16 +290,28 @@ export default class ImmigrantProduct extends Vue {
   }
 
   combine(index: number, begin: number, container: LandOutPut[]) {
-    let combineString = "";
     if (index == this.citizens) {
+      let outPut: TurnOutPut = {
+        index: this.combineIndex,
+        production: this.baseOutPut.production,
+        gold: 0,
+        landList: [],
+      };
       for (let i = 0; i < this.citizens; i++) {
-        combineString += container[i].description;
-        combineString += " ";
+        outPut.gold += container[i].gold;
+        outPut.production += container[i].production;
+        outPut.landList.push(container[i].index);
       }
-      console.log(combineString);
+      this.combineIndex++;
+      this.turnCombines.push(outPut);
+      console.log(this.turnCombines);
       return;
     }
-    for (let j = begin; j < this.landList.length - this.citizens + index; j++) {
+    for (
+      let j = begin;
+      j <= this.landList.length - this.citizens + index;
+      j++
+    ) {
       container[index] = {
         index: this.landList[j].index,
         description: this.landList[j].description,
