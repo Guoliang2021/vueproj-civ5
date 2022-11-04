@@ -302,9 +302,18 @@ export default class ImmigrantProduct extends Vue {
         outPut.production += container[i].production;
         outPut.landList.push(container[i].index);
       }
+      for (let k = 0; k < this.turnCombines.length; k++) {
+        if (this.turnCombines[k].production == outPut.production) {
+          if (this.turnCombines[k].gold >= outPut.gold) return;
+          else {
+            this.turnCombines[k].gold = outPut.gold;
+            this.turnCombines[k].landList = outPut.landList;
+            return;
+          }
+        }
+      }
       this.combineIndex++;
       this.turnCombines.push(outPut);
-      console.log(this.turnCombines);
       return;
     }
     for (
