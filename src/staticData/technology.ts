@@ -500,7 +500,7 @@ export const technologiesArray: Array<TechnologyModel> = [
     name: "火箭学",
     era: eEra.ERA_ATOMIC,
     cost: 6400,
-    preTechList: [eTechnology.TECH_RADAR, eTechnology.TECH_ATOMIC_THEORY],
+    preTechList: [eTechnology.TECH_RADAR],
   },
   {
     id: eTechnology.TECH_COMPUTERS,
