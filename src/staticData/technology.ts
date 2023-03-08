@@ -1,6 +1,11 @@
 import { eEra, eTechnology } from "@/staticData/enums";
 import { TechnologyModel } from "@/types/commonType";
 
+//实际科研需求计算公式：science = base * cost * (1 + punishment * citynumber)
+//cost：较小及以下，标准，较大，极大分别为1,1.1,1.2,1.3
+//punishment:标准及以下，较大，极大:5,3.75,2.5
+//eg:基础值为780的声学，在标准图上的科研需求按城市数从1到8分别为：780 * 1.1 * (1 + 0.05*(1~8)) = 900.9(901)/943.8(944)...
+
 export const technologiesArray: Array<TechnologyModel> = [
   /*ancient */
   {
@@ -500,7 +505,7 @@ export const technologiesArray: Array<TechnologyModel> = [
     name: "火箭学",
     era: eEra.ERA_ATOMIC,
     cost: 6400,
-    preTechList: [eTechnology.TECH_RADAR],
+    preTechList: [eTechnology.TECH_RADAR, eTechnology.TECH_ATOMIC_THEORY],
   },
   {
     id: eTechnology.TECH_COMPUTERS,
